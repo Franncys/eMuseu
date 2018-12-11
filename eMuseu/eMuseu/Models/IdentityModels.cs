@@ -29,5 +29,7 @@ namespace eMuseu.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<eMuseu.Models.Utilizador> Utilizadors { get; set; }
     }
 }
