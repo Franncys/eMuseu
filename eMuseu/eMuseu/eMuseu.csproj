@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
@@ -203,6 +204,14 @@
     <Compile Include="Migrations\201812111317354_testes.cs" />
     <Compile Include="Migrations\201812111317354_testes.Designer.cs">
       <DependentUpon>201812111317354_testes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111335402_testev4.cs" />
+    <Compile Include="Migrations\201812111335402_testev4.Designer.cs">
+      <DependentUpon>201812111335402_testev4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111356396_AddUser.cs" />
+    <Compile Include="Migrations\201812111356396_AddUser.Designer.cs">
+      <DependentUpon>201812111356396_AddUser.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -284,6 +293,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\ApplicationUsers\" />
     <Folder Include="Views\Utilizador\" />
   </ItemGroup>
   <ItemGroup>
@@ -302,6 +312,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812111317354_testes.resx">
       <DependentUpon>201812111317354_testes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111335402_testev4.resx">
+      <DependentUpon>201812111335402_testev4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111356396_AddUser.resx">
+      <DependentUpon>201812111356396_AddUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

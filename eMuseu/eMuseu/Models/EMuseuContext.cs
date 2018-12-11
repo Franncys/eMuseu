@@ -19,5 +19,12 @@ namespace eMuseu.Models
         public DbSet<EmprestimoPecas> EmprestimoPecas { get; set; }
         public DbSet<Rececao> Rececoes { get; set; }
         public DbSet<Emprestimo> emprestimos { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+        }
+
+        //public System.Data.Entity.DbSet<eMuseu.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

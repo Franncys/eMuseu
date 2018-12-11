@@ -19,6 +19,12 @@ namespace eMuseu.Models
         [ForeignKey("PecaID")]
         public IList<EmprestimoPecas> PecaID { get; set; }
 
+        [ForeignKey("User")]
+        public string UserId { get; set; }
+       
+        public virtual ApplicationUser User { get; set; }
+        
+
         //[ForeignKey("UserID")]
         //public IList<Utilizador> utilizadores { get; set; }
 
