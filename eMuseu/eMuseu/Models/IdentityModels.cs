@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -12,7 +13,30 @@ namespace eMuseu.Models
     {
 
         [Required]
+        [Display(Name = "Nome")]
         public string NomeP { get; set; }
+        [Required]
+        [Display(Name = "Apelido")]
+        public string NomeU { get; set; }
+        [Required]
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:d}", ApplyFormatInEditMode = true)]
+        public DateTime DataNascimento { get; set; }
+        [Required]
+        public String Morada { get; set; }
+        [Required]
+        public String Cidade { get; set; }
+        [Required]
+        [Display(Name = "Tipo de Utilizador")]
+        public TipoUser UserTipo { get; set; }
+        public int aprovado { get; set; }
+
+        public enum TipoUser
+        {
+            Registado,
+            Especialista,
+            Administrador
+        }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -34,6 +58,8 @@ namespace eMuseu.Models
         //public DbSet<Utilizador> Utilizadores { get; set; }
         public DbSet<Peca> Pecas { get; set; }
         public DbSet<Tratamentos> Tratamentos { get; set; }
+        public DbSet<Emprestimo> Emprestimos { get; set; }
+        //public DbSet<Rececao> Rececoes { get; set; }
 
         public static ApplicationDbContext Create()
         {

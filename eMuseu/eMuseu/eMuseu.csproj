@@ -209,6 +209,14 @@
     <Compile Include="Migrations\201812111316059_firstmigrationv2.Designer.cs">
       <DependentUpon>201812111316059_firstmigrationv2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812111344117_firstmigrationv3.cs" />
+    <Compile Include="Migrations\201812111344117_firstmigrationv3.Designer.cs">
+      <DependentUpon>201812111344117_firstmigrationv3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812111351462_firstmigrationv4.cs" />
+    <Compile Include="Migrations\201812111351462_firstmigrationv4.Designer.cs">
+      <DependentUpon>201812111351462_firstmigrationv4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Emprestimo.cs" />
@@ -281,21 +289,13 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Utilizadors\Create.cshtml" />
-    <Content Include="Views\Utilizadors\Delete.cshtml" />
-    <Content Include="Views\Utilizadors\Details.cshtml" />
-    <Content Include="Views\Utilizadors\Edit.cshtml" />
-    <Content Include="Views\Utilizadors\Index.cshtml" />
-    <Content Include="Views\Utilizadors\Login.cshtml" />
     <Content Include="Views\ApplicationUsers\Create.cshtml" />
     <Content Include="Views\ApplicationUsers\Delete.cshtml" />
     <Content Include="Views\ApplicationUsers\Details.cshtml" />
     <Content Include="Views\ApplicationUsers\Edit.cshtml" />
     <Content Include="Views\ApplicationUsers\Index.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Utilizador\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -315,6 +315,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812111316059_firstmigrationv2.resx">
       <DependentUpon>201812111316059_firstmigrationv2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111344117_firstmigrationv3.resx">
+      <DependentUpon>201812111344117_firstmigrationv3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812111351462_firstmigrationv4.resx">
+      <DependentUpon>201812111351462_firstmigrationv4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
