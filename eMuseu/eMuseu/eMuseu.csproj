@@ -197,40 +197,27 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\UtilizadorsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812111147148_InitialModel.cs" />
-    <Compile Include="Migrations\201812111147148_InitialModel.Designer.cs">
-      <DependentUpon>201812111147148_InitialModel.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812111207108_testNM.cs" />
-    <Compile Include="Migrations\201812111207108_testNM.Designer.cs">
-      <DependentUpon>201812111207108_testNM.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812111216599_asd.cs" />
-    <Compile Include="Migrations\201812111216599_asd.Designer.cs">
-      <DependentUpon>201812111216599_asd.cs</DependentUpon>
+    <Compile Include="Migrations\201812111317354_testes.cs" />
+    <Compile Include="Migrations\201812111317354_testes.Designer.cs">
+      <DependentUpon>201812111317354_testes.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Emprestimo.cs" />
+    <Compile Include="Models\EmprestimoPecas.cs" />
     <Compile Include="Models\EMuseuContext.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Peca.cs" />
     <Compile Include="Models\Rececao.cs" />
     <Compile Include="Models\Tratamentos.cs" />
-    <Compile Include="Models\Utilizador.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\eMuseuV2.mdf" />
-    <Content Include="App_Data\eMuseuV2_log.ldf">
-      <DependentUpon>eMuseuV2.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -296,6 +283,7 @@
     <Content Include="Views\Utilizadors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Views\Utilizador\" />
   </ItemGroup>
   <ItemGroup>
@@ -312,14 +300,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812111147148_InitialModel.resx">
-      <DependentUpon>201812111147148_InitialModel.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812111207108_testNM.resx">
-      <DependentUpon>201812111207108_testNM.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812111216599_asd.resx">
-      <DependentUpon>201812111216599_asd.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812111317354_testes.resx">
+      <DependentUpon>201812111317354_testes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

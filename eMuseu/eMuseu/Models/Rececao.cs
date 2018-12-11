@@ -12,9 +12,14 @@ namespace eMuseu.Models
     {
         [Key]
         public int rececaoID { get; set; }
-        [ForeignKey("PecaID")]
+        
         public Peca PecaID { get; set; }
         //Inserir Campos Para Formulario
+
+        public Rececao()
+        {
+
+        }
 
     }
 }

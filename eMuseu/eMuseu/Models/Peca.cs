@@ -17,8 +17,7 @@ namespace eMuseu.Models
         public TipoPeca PecaTipo { get; set; }
         [ForeignKey("TratamentoID")]
         public IList<Tratamentos> TratamentoID { get; set; }
-        [ForeignKey("EmprestimoID")]
-        public IList<Emprestimo> EmprestimoID { get; set; }
+
 
         public enum TipoPeca
         {

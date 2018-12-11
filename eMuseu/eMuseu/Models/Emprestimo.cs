@@ -17,6 +17,14 @@ namespace eMuseu.Models
         public Boolean validado { get; set; }
         public Boolean devolvido { get; set; }
         [ForeignKey("PecaID")]
-        public IList<Peca> PecaID { get; set; }
+        public IList<EmprestimoPecas> PecaID { get; set; }
+
+        //[ForeignKey("UserID")]
+        //public IList<Utilizador> utilizadores { get; set; }
+
+        public Emprestimo()
+        {
+
+        }
     }
 }
