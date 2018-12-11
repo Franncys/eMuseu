@@ -15,7 +15,10 @@ namespace eMuseu.Models
         public int Periodo { get; set; }
         public String Zona { get; set; }
         public TipoPeca PecaTipo { get; set; }
-        public IList<Tratamentos> tratamentos { get; set; }
+        [ForeignKey("TratamentoID")]
+        public IList<Tratamentos> TratamentoID { get; set; }
+        [ForeignKey("EmprestimoID")]
+        public IList<Emprestimo> EmprestimoID { get; set; }
 
         public enum TipoPeca
         {

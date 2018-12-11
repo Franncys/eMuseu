@@ -12,7 +12,7 @@ namespace eMuseu.Models
     {
         [Key]
         public int UserID { get; set; }
-        public int Nome { get; set; }
+        public String Nome { get; set; }
         public TipoUser UserTipo { get; set; }
         public String Morada { get; set; }
         public String Cidade { get; set; }
