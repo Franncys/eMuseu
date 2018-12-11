@@ -17,7 +17,6 @@ namespace eMuseu.Models
         public String Morada { get; set; }
         public String Cidade { get; set; }
         public int aprovado { get; set; }
-
         public enum TipoUser
         {
             Registado,
