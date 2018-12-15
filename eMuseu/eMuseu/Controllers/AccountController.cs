@@ -9,6 +9,9 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using eMuseu.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.Owin;
+using System.Collections.Generic;
 
 namespace eMuseu.Controllers
 {
@@ -17,15 +20,23 @@ namespace eMuseu.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationRoleManager _roleManager;
+        private ApplicationDbContext context;
+
+
 
         public AccountController()
         {
+            
+            context = new ApplicationDbContext();
+            
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -49,6 +60,18 @@ namespace eMuseu.Controllers
             private set
             {
                 _userManager = value;
+            }
+        }
+
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
             }
         }
 
@@ -139,7 +162,20 @@ namespace eMuseu.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            /*List<SelectListItem> list = new List<SelectListItem>();
+            foreach (var role in RoleManager.Roles)
+                list.Add(new SelectListItem() { Value = role.Name, Text = role.Name });
+            ViewBag.Roles = list;
+            return View();*/
+
+            var roles = context.Roles.Select(r => r.Name);
+
+            var viewModel = new RegisterViewModel
+            {
+                RolesList = new SelectList(roles)
+            };
+            return View(viewModel);
+
         }
 
         //
@@ -151,22 +187,22 @@ namespace eMuseu.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser {UserName = model.UserName, Email = model.Email,NomeP = model.NomeP, NomeU = model.NomeU, DataNascimento = model.DataNascimento, Cidade = model.Cidade, Morada = model.Morada, aprovado = false, RoleName = model.RoleName};
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id,model.RoleName);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
-                    // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
-                    // Send an email with this link
-                    // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
-                    // var callbackUrl = Url.Action("ConfirmEmail", "Account", new { userId = user.Id, code = code }, protocol: Request.Url.Scheme);
-                    // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");
 
-                    return RedirectToAction("Index", "Home");
+                    context.Users.Add(user);
+
+                    context.SaveChanges();
+                return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
+            var roles = context.Roles.Select(r => r.Name);
+            model.RolesList = new SelectList(roles);
 
             // If we got this far, something failed, redisplay form
             return View(model);
