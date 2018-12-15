@@ -195,19 +195,15 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812111312052_firstmigration.cs" />
-    <Compile Include="Migrations\201812111312052_firstmigration.Designer.cs">
-      <DependentUpon>201812111312052_firstmigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812111316059_firstmigrationv2.cs" />
-    <Compile Include="Migrations\201812111316059_firstmigrationv2.Designer.cs">
-      <DependentUpon>201812111316059_firstmigrationv2.cs</DependentUpon>
+    <Compile Include="Migrations\201812151926170_roleV1.cs" />
+    <Compile Include="Migrations\201812151926170_roleV1.Designer.cs">
+      <DependentUpon>201812151926170_roleV1.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -216,13 +212,16 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Peca.cs" />
     <Compile Include="Models\Rececao.cs" />
+    <Compile Include="Models\RoleViewModel.cs" />
     <Compile Include="Models\Tratamentos.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\eMuseuV2.mdf" />
-    <Content Include="App_Data\eMuseuV2_log.ldf" />
+    <Content Include="App_Data\eMuseuV1.mdf" />
+    <Content Include="App_Data\eMuseuV1_log.ldf">
+      <DependentUpon>eMuseuV1.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -281,20 +280,16 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
-    <Content Include="Views\Utilizadors\Create.cshtml" />
-    <Content Include="Views\Utilizadors\Delete.cshtml" />
-    <Content Include="Views\Utilizadors\Details.cshtml" />
-    <Content Include="Views\Utilizadors\Edit.cshtml" />
-    <Content Include="Views\Utilizadors\Index.cshtml" />
-    <Content Include="Views\Utilizadors\Login.cshtml" />
-    <Content Include="Views\ApplicationUsers\Create.cshtml" />
-    <Content Include="Views\ApplicationUsers\Delete.cshtml" />
-    <Content Include="Views\ApplicationUsers\Details.cshtml" />
-    <Content Include="Views\ApplicationUsers\Edit.cshtml" />
-    <Content Include="Views\ApplicationUsers\Index.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Create.cshtml" />
+    <Content Include="Views\Role\Edit.cshtml" />
+    <Content Include="Views\Role\Details.cshtml" />
+    <Content Include="Views\Role\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\Utilizador\" />
+    <EmbeddedResource Include="Migrations\201812151926170_roleV1.resx">
+      <DependentUpon>201812151926170_roleV1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -308,14 +303,6 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812111312052_firstmigration.resx">
-      <DependentUpon>201812111312052_firstmigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812111316059_firstmigrationv2.resx">
-      <DependentUpon>201812111316059_firstmigrationv2.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
