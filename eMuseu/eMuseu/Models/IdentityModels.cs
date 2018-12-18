@@ -13,13 +13,16 @@ namespace eMuseu.Models
     {
         //public enum TipoUser { administrador, especialista, registado }
         //public string UserName { get; set; }
+        [Display(Name = "Primeiro Nome")]
         public string NomeP { get; set; }
+        [Display(Name = "Apelido")]
         public string NomeU { get; set; }
-        public DateTime? DataNascimento { get; set; }
+        public DateTime? DataNascimento { get; set; } = DateTime.Today;
         public string Cidade { get; set; }
         public string Morada { get; set; }
         //public TipoUser UserTipo { get; set; }
         public Boolean aprovado { get; set; }
+        [Display(Name = "Role")]
         public string RoleName { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -53,6 +56,8 @@ namespace eMuseu.Models
         {
             return new ApplicationDbContext();
         }
+
+        //public System.Data.Entity.DbSet<eMuseu.Models.ApplicationUser> ApplicationUsers { get; set; }
 
 
 

@@ -75,6 +75,22 @@ namespace eMuseu.Controllers
             }
         }
 
+        [AllowAnonymous]
+        public ActionResult ListaPorAprovar()
+        {
+            
+            return View(context.Users.ToList());
+        }
+
+        /*[HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> ListaPorAprovar(RegisterViewModel model)
+        {
+
+            return View();
+        }*/
+
+
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -191,13 +207,11 @@ namespace eMuseu.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    UserManager.AddToRole(user.Id,model.RoleName);
+                    await UserManager.AddToRoleAsync(user.Id,model.RoleName);
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
-                    context.Users.Add(user);
-
                     context.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }

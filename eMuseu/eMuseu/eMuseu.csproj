@@ -205,6 +205,18 @@
     <Compile Include="Migrations\201812151926170_roleV1.Designer.cs">
       <DependentUpon>201812151926170_roleV1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812181117438_RoleV2.cs" />
+    <Compile Include="Migrations\201812181117438_RoleV2.Designer.cs">
+      <DependentUpon>201812181117438_RoleV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812181125158_RoleV3.cs" />
+    <Compile Include="Migrations\201812181125158_RoleV3.Designer.cs">
+      <DependentUpon>201812181125158_RoleV3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812181237423_RoleV4.cs" />
+    <Compile Include="Migrations\201812181237423_RoleV4.Designer.cs">
+      <DependentUpon>201812181237423_RoleV4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Emprestimo.cs" />
@@ -285,10 +297,20 @@
     <Content Include="Views\Role\Edit.cshtml" />
     <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Delete.cshtml" />
+    <Content Include="Views\Account\ListaPorAprovar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201812151926170_roleV1.resx">
       <DependentUpon>201812151926170_roleV1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812181117438_RoleV2.resx">
+      <DependentUpon>201812181117438_RoleV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812181125158_RoleV3.resx">
+      <DependentUpon>201812181125158_RoleV3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812181237423_RoleV4.resx">
+      <DependentUpon>201812181237423_RoleV4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

@@ -76,13 +76,13 @@ namespace eMuseu.Controllers
             return View(new RoleViewModel(role));
         }
 
-        public async Task<ActionResult> Delete(string id)
+        /*public async Task<ActionResult> Delete(string id)
         {
             var role = await RoleManager.FindByIdAsync(id);
             return View(new RoleViewModel(role));
-        }
+        }*/
 
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public async Task<ActionResult> Delete(string id)
         {
             var role = await RoleManager.FindByIdAsync(id);
             await RoleManager.DeleteAsync(role);

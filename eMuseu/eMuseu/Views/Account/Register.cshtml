@@ -1,6 +1,8 @@
 ﻿@model eMuseu.Models.RegisterViewModel
 @{
-    ViewBag.Title = "Criar Conta";
+                /**/
+
+                ViewBag.Title = "Criar Conta";
 }
 
 <h2>@ViewBag.Title</h2>
@@ -25,13 +27,6 @@
         </div>
     </div>
 
-    <div class="form-group">
-        @Html.LabelFor(m => m.DataNascimento, htmlAttributes: new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
-        </div>
-    </div>
 
     <div class="form-group">
         @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
@@ -46,6 +41,14 @@
         <div class="col-md-10">
             @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
             @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DataNascimento, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.DataNascimento, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.DataNascimento, "", new { @class = "text-danger" })
         </div>
     </div>
 
