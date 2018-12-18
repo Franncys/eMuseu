@@ -167,14 +167,15 @@ namespace eMuseu.Controllers
                 list.Add(new SelectListItem() { Value = role.Name, Text = role.Name });
             ViewBag.Roles = list;
             return View();*/
+            ViewBag.Perfis = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
 
-            var roles = context.Roles.Select(r => r.Name);
+            //var roles = context.Roles.Select(r => r.Name);
 
-            var viewModel = new RegisterViewModel
+           /* var viewModel = new RegisterViewModel
             {
                 RolesList = new SelectList(roles)
-            };
-            return View(viewModel);
+            };*/
+            return View();
 
         }
 
@@ -187,22 +188,44 @@ namespace eMuseu.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser {UserName = model.UserName, Email = model.Email,NomeP = model.NomeP, NomeU = model.NomeU, DataNascimento = model.DataNascimento, Cidade = model.Cidade, Morada = model.Morada, aprovado = false, RoleName = model.RoleName};
+                var user = new ApplicationUser {UserName = model.UserName, Email = model.Email,NomeP = model.NomeP, NomeU = model.NomeU, DataNascimento = model.DataNascimento, Cidade = model.Cidade, Morada = model.Morada, aprovado = false };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    UserManager.AddToRole(user.Id,model.RoleName);
+                    await UserManager.AddToRoleAsync(user.Id, model.UserRoles);
+                    
                     await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    
+                    try
+                    {
+                        context.SaveChanges();
+                    }
+                    catch (System.Data.Entity.Validation.DbEntityValidationException dbEx)
+                    {
+                        Exception raise = dbEx;
+                        foreach (var validationErrors in dbEx.EntityValidationErrors)
+                        {
+                            foreach (var validationError in validationErrors.ValidationErrors)
+                            {
+                                string message = string.Format("{0}:{1}",
+                                    validationErrors.Entry.Entity.ToString(),
+                                    validationError.ErrorMessage);
+                                // raise a new exception nesting
+                                // the current instance as InnerException
+                                raise = new InvalidOperationException(message, raise);
+                            }
+                        }
+                        throw raise;
+                    }
 
-                    context.Users.Add(user);
-
-                    context.SaveChanges();
-                return RedirectToAction("Index", "Home");
+                    return RedirectToAction("Index", "Home");
                 }
                 AddErrors(result);
             }
-            var roles = context.Roles.Select(r => r.Name);
-            model.RolesList = new SelectList(roles);
+
+            // var roles = context.Roles.Select(r => r.Name);
+            // model.RolesList = new SelectList(roles);
+            ViewBag.Perfis = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin")).ToList(), "Name", "Name");
 
             // If we got this far, something failed, redisplay form
             return View(model);

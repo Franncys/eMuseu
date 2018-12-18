@@ -3,7 +3,7 @@ namespace eMuseu.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class firstmigrationv6_8 : DbMigration
+    public partial class teste1 : DbMigration
     {
         public override void Up()
         {

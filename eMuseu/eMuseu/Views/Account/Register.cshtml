@@ -80,11 +80,9 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(m => m.RoleName, new { @class = "col-md-2 control-label" })
+        @Html.LabelFor(m => m.UserRoles, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.RoleName, Model.RolesList, "Select Role", new { @class = "form-control" })
-            <!--Html.DropDownListFor(model => model.RoleName, new SelectList(ViewBag.Roles, "Value", "Text"), new { class = "form-control" })-->
-            @Html.ValidationMessageFor(model => model.RoleName, "", new { @class = "text-danger" })
+            @Html.DropDownList("UserRoles", (SelectList)ViewBag.Perfis, "Selecione Perfil", new { @class = "form-control" })
         </div>
     </div>
     <div class="form-group">

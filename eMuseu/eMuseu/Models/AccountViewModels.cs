@@ -87,9 +87,6 @@ namespace eMuseu.Models
         public string Cidade { get; set; }
         [Required]
         public string Morada { get; set; }
-        [Required]
-        //public string RoleName { get; set; }
-        public string RoleName { get; set; }
         public IEnumerable<SelectListItem> RolesList { get; set; }
         //public IEnumerable<SelectListItem> RoleList { get; set; }
         //public enum TipoUser { administrador, especialista, registado }
@@ -105,6 +102,10 @@ namespace eMuseu.Models
         [Display(Name = "Confirmar password")]
         //[Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
+
+        [Required]
+        [Display(Name = "Perfil")]
+        public string UserRoles { get; set; }
 
         /*public RegisterViewModel()
         {

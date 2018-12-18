@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using eMuseu.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace eMuseu
 {
@@ -40,6 +41,7 @@ namespace eMuseu
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
             app.UseTwoFactorSignInCookie(DefaultAuthenticationTypes.TwoFactorCookie, TimeSpan.FromMinutes(5));
 
+            CreateRolesAndUsers();
             // Enables the application to remember the second login verification factor such as phone or email.
             // Once you check this option, your second step of verification during the login process will be remembered on the device where you logged in from.
             // This is similar to the RememberMe option when you log in.
@@ -63,6 +65,62 @@ namespace eMuseu
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+        }
+        public void CreateRolesAndUsers()
+        {
+            ApplicationDbContext context = new ApplicationDbContext();
+
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+            if (!roleManager.RoleExists("Admin"))
+            {
+                //first we create Admin rool
+                var role = new IdentityRole
+                {
+                    Name = "Admin"
+                };
+                roleManager.Create(role);
+
+                var user = new ApplicationUser
+                {
+                    UserName = "admin@isec.pt",
+                    Email = "admin@isec.pt"
+                };
+
+                string userPWD = @"\123Qwe";
+                var chkUser = userManager.Create(user, userPWD);
+                //Add default user to role admin
+                if (chkUser.Succeeded)
+                {
+                    var result = userManager.AddToRole(user.Id, "Admin");
+                }
+
+            }
+
+            if (!roleManager.RoleExists("Aluno"))
+            {
+                var role = new IdentityRole { Name = "Aluno" };
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("Docente"))
+            {
+                var role = new IdentityRole { Name = "Docente" };
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("Empresa"))
+            {
+                var role = new IdentityRole { Name = "Empresa" };
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("Comissao"))
+            {
+                var role = new IdentityRole { Name = "Comissao" };
+                roleManager.Create(role);
+            }
         }
     }
 }

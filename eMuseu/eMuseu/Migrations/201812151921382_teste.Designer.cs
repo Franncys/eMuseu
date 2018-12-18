@@ -7,13 +7,13 @@ namespace eMuseu.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class firstmigrationv6_4 : IMigrationMetadata
+    public sealed partial class teste : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(firstmigrationv6_4));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(teste));
         
         string IMigrationMetadata.Id
         {
-            get { return "201812121650034_firstmigrationv6_4"; }
+            get { return "201812151921382_teste"; }
         }
         
         string IMigrationMetadata.Source
