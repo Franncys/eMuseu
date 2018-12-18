@@ -36,35 +36,40 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeU)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cidade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Morada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.aprovado)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
-            @Html.ActionLink("Delete", "Account", new { id = item.Id })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        if (!item.aprovado)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeP)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.NomeU)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cidade)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Morada)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.aprovado)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Account", new { id = item.Id })
+                </td>
+            </tr>
+            }
+        }
 
 </table>
