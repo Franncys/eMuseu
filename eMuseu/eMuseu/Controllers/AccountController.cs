@@ -12,6 +12,7 @@ using eMuseu.Models;
 using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using System.Collections.Generic;
+using System.Data.Entity;
 
 namespace eMuseu.Controllers
 {
@@ -82,13 +83,25 @@ namespace eMuseu.Controllers
             return View(context.Users.ToList());
         }
 
-        /*[HttpPost]
+        [HttpPost]
         [AllowAnonymous]
-        public async Task<ActionResult> ListaPorAprovar(RegisterViewModel model)
+        public ActionResult ListaPorAprovar(string id, string Aprovado = null)
         {
-
+            if (ModelState.IsValid)
+            {
+                if(Aprovado == null)
+                    return RedirectToAction("Login");
+                if (Aprovado != null)
+                {
+                    ApplicationUser User = context.Users.Find(Aprovado);
+                    User.aprovado = true;
+                    UserManager.UpdateAsync(User);
+                    context.SaveChanges();
+                }
+                return RedirectToAction("ListaPorAprovar");
+            }
             return View();
-        }*/
+        }
 
 
         //
