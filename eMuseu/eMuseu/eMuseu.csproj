@@ -201,25 +201,18 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812151926170_roleV1.cs" />
-    <Compile Include="Migrations\201812151926170_roleV1.Designer.cs">
-      <DependentUpon>201812151926170_roleV1.cs</DependentUpon>
+    <Compile Include="Migrations\201812190024450_teste.cs" />
+    <Compile Include="Migrations\201812190024450_teste.Designer.cs">
+      <DependentUpon>201812190024450_teste.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812181117438_RoleV2.cs" />
-    <Compile Include="Migrations\201812181117438_RoleV2.Designer.cs">
-      <DependentUpon>201812181117438_RoleV2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812181125158_RoleV3.cs" />
-    <Compile Include="Migrations\201812181125158_RoleV3.Designer.cs">
-      <DependentUpon>201812181125158_RoleV3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812181237423_RoleV4.cs" />
-    <Compile Include="Migrations\201812181237423_RoleV4.Designer.cs">
-      <DependentUpon>201812181237423_RoleV4.cs</DependentUpon>
+    <Compile Include="Migrations\201812191225434_PecaEmprestimo.cs" />
+    <Compile Include="Migrations\201812191225434_PecaEmprestimo.Designer.cs">
+      <DependentUpon>201812191225434_PecaEmprestimo.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Emprestimo.cs" />
+    <Compile Include="Models\Emp_Peca.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Peca.cs" />
@@ -230,10 +223,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\eMuseuV1.mdf" />
-    <Content Include="App_Data\eMuseuV1_log.ldf">
-      <DependentUpon>eMuseuV1.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -300,20 +289,6 @@
     <Content Include="Views\Account\ListaPorAprovar.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812151926170_roleV1.resx">
-      <DependentUpon>201812151926170_roleV1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812181117438_RoleV2.resx">
-      <DependentUpon>201812181117438_RoleV2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812181125158_RoleV3.resx">
-      <DependentUpon>201812181125158_RoleV3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812181237423_RoleV4.resx">
-      <DependentUpon>201812181237423_RoleV4.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
@@ -325,6 +300,17 @@
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201812190024450_teste.resx">
+      <DependentUpon>201812190024450_teste.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812191225434_PecaEmprestimo.resx">
+      <DependentUpon>201812191225434_PecaEmprestimo.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

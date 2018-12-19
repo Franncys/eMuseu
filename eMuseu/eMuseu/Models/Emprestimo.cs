@@ -16,7 +16,6 @@ namespace eMuseu.Models
         public System.DateTime data_fim { get; set; }
         public Boolean validado { get; set; }
         public Boolean devolvido { get; set; }
-        [ForeignKey("PecaID")]
-        public IList<Peca> PecaID { get; set; }
+        public virtual ICollection<Emp_Peca> Emp_Peca { get; set; }
     }
 }
