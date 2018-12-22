@@ -85,22 +85,26 @@ namespace eMuseu.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult ListaPorAprovar(string id, string Aprovado = null)
+        public ActionResult ListaPorAprovar(string id, string[] Aprovado = null)
         {
             if (ModelState.IsValid)
             {
-                if(Aprovado == null)
-                    return RedirectToAction("Login");
-                if (Aprovado != null)
+                foreach(var aux in Aprovado)
                 {
-                    ApplicationUser User = context.Users.Find(Aprovado);
-                    User.aprovado = true;
-                    UserManager.UpdateAsync(User);
-                    context.SaveChanges();
+                    if(aux == null)
+                    {
+                        break;
+                    }
+                        ApplicationUser User = context.Users.Find(aux);
+                        User.aprovado = true;
+                        UserManager.UpdateAsync(User);
+                        context.SaveChanges();
+                    
                 }
+                
                 return RedirectToAction("ListaPorAprovar");
             }
-            return View();
+            return RedirectToAction("ListaPorAprovar");
         }
 
 
