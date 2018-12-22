@@ -47,10 +47,16 @@ namespace eMuseu.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
-
-        //public DbSet<Utilizador> Utilizadores { get; set; }
+        
         public DbSet<Peca> Pecas { get; set; }
         public DbSet<Tratamentos> Tratamentos { get; set; }
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Emp_Peca>().HasKey(e => new { e.PecaID, e.EmprestimoID });
+
+        }
 
         public static ApplicationDbContext Create()
         {
