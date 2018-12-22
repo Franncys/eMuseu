@@ -85,24 +85,62 @@ namespace eMuseu.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public ActionResult ListaPorAprovar(string id, string Aprovado = null)
+        public ActionResult ListaPorAprovar(string id, string[] Aprovado = null)
         {
             if (ModelState.IsValid)
             {
-                if(Aprovado == null)
-                    return RedirectToAction("Login");
-                if (Aprovado != null)
+                foreach(var aux in Aprovado)
                 {
-                    ApplicationUser User = context.Users.Find(Aprovado);
-                    User.aprovado = true;
-                    UserManager.UpdateAsync(User);
-                    context.SaveChanges();
+                    if(aux == null)
+                    {
+                        break;
+                    }
+                        ApplicationUser User = context.Users.Find(aux);
+                        User.aprovado = true;
+                        UserManager.UpdateAsync(User);
+                        context.SaveChanges();
+                    
                 }
+                
                 return RedirectToAction("ListaPorAprovar");
             }
-            return View();
+            return RedirectToAction("ListaPorAprovar");
         }
 
+        [AllowAnonymous]
+        public ActionResult ListaUsers()
+        {
+
+            return View(context.Users.ToList());
+        }
+
+        public async Task<ActionResult> Edit(string id)
+        {
+            var user = await UserManager.FindByNameAsync(id);
+            return View(new EditViewModel(user));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(EditViewModel Model)
+        {
+            var user = new ApplicationUser() { Id = Model.Id, };
+            await UserManager.UpdateAsync(user);
+            return RedirectToAction("ListaUsers");
+        }
+
+        public async Task<ActionResult> Delete(string id)
+        {
+            var user = await UserManager.FindByIdAsync(id);
+            await UserManager.DeleteAsync(user);
+            return RedirectToAction("ListaUsers");
+        }
+
+        public async Task<ActionResult> Delete1(string id)
+        {
+            var user = await UserManager.FindByIdAsync(id);
+            await UserManager.DeleteAsync(user);
+            return RedirectToAction("ListaPorAprovar");
+        }
 
         //
         // GET: /Account/Login

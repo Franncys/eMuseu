@@ -17,6 +17,7 @@ namespace eMuseu.Models
         public string NomeP { get; set; }
         [Display(Name = "Apelido")]
         public string NomeU { get; set; }
+        [Display(Name = "Data de Nascimento")]
         public DateTime? DataNascimento { get; set; } = DateTime.Today;
         public string Cidade { get; set; }
         public string Morada { get; set; }
@@ -65,6 +66,8 @@ namespace eMuseu.Models
         {
             return new ApplicationDbContext();
         }
+
+        //public System.Data.Entity.DbSet<eMuseu.Models.ApplicationUser> ApplicationUsers { get; set; }
 
         //public System.Data.Entity.DbSet<eMuseu.Models.ApplicationUser> ApplicationUsers { get; set; }
 

@@ -209,10 +209,6 @@
     <Compile Include="Migrations\201812191225434_PecaEmprestimo.Designer.cs">
       <DependentUpon>201812191225434_PecaEmprestimo.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812201725527_RelationalTables.cs" />
-    <Compile Include="Migrations\201812201725527_RelationalTables.Designer.cs">
-      <DependentUpon>201812201725527_RelationalTables.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Emprestimo.cs" />
@@ -295,6 +291,7 @@
     <Content Include="Views\Role\Details.cshtml" />
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Account\ListaPorAprovar.cshtml" />
+    <Content Include="Views\Account\ListaUsers.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -316,9 +313,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812191225434_PecaEmprestimo.resx">
       <DependentUpon>201812191225434_PecaEmprestimo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812201725527_RelationalTables.resx">
-      <DependentUpon>201812201725527_RelationalTables.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
