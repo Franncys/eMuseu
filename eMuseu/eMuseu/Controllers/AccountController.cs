@@ -107,6 +107,40 @@ namespace eMuseu.Controllers
             return RedirectToAction("ListaPorAprovar");
         }
 
+        [AllowAnonymous]
+        public ActionResult ListaUsers()
+        {
+
+            return View(context.Users.ToList());
+        }
+
+        public async Task<ActionResult> Edit(string id)
+        {
+            var user = await UserManager.FindByNameAsync(id);
+            return View(new EditViewModel(user));
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> Edit(EditViewModel Model)
+        {
+            var user = new ApplicationUser() { Id = Model.Id, };
+            await UserManager.UpdateAsync(user);
+            return RedirectToAction("ListaUsers");
+        }
+
+        public async Task<ActionResult> Delete(string id)
+        {
+            var user = await UserManager.FindByIdAsync(id);
+            await UserManager.DeleteAsync(user);
+            return RedirectToAction("ListaUsers");
+        }
+
+        public async Task<ActionResult> Delete1(string id)
+        {
+            var user = await UserManager.FindByIdAsync(id);
+            await UserManager.DeleteAsync(user);
+            return RedirectToAction("ListaPorAprovar");
+        }
 
         //
         // GET: /Account/Login
