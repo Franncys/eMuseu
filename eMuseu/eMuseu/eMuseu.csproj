@@ -195,9 +195,12 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\EmprestimosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\PecasController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\TratamentosController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -208,6 +211,10 @@
     <Compile Include="Migrations\201812191225434_PecaEmprestimo.cs" />
     <Compile Include="Migrations\201812191225434_PecaEmprestimo.Designer.cs">
       <DependentUpon>201812191225434_PecaEmprestimo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812231349237_pecaNome.cs" />
+    <Compile Include="Migrations\201812231349237_pecaNome.Designer.cs">
+      <DependentUpon>201812231349237_pecaNome.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -292,6 +299,21 @@
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Account\ListaPorAprovar.cshtml" />
     <Content Include="Views\Account\ListaUsers.cshtml" />
+    <Content Include="Views\Pecas\Create.cshtml" />
+    <Content Include="Views\Pecas\Delete.cshtml" />
+    <Content Include="Views\Pecas\Details.cshtml" />
+    <Content Include="Views\Pecas\Edit.cshtml" />
+    <Content Include="Views\Pecas\Index.cshtml" />
+    <Content Include="Views\Tratamentos\Create.cshtml" />
+    <Content Include="Views\Tratamentos\Delete.cshtml" />
+    <Content Include="Views\Tratamentos\Details.cshtml" />
+    <Content Include="Views\Tratamentos\Edit.cshtml" />
+    <Content Include="Views\Tratamentos\Index.cshtml" />
+    <Content Include="Views\Emprestimos\Create.cshtml" />
+    <Content Include="Views\Emprestimos\Delete.cshtml" />
+    <Content Include="Views\Emprestimos\Details.cshtml" />
+    <Content Include="Views\Emprestimos\Edit.cshtml" />
+    <Content Include="Views\Emprestimos\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -313,6 +335,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812191225434_PecaEmprestimo.resx">
       <DependentUpon>201812191225434_PecaEmprestimo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812231349237_pecaNome.resx">
+      <DependentUpon>201812231349237_pecaNome.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -12,7 +12,13 @@ namespace eMuseu.Models
     {
         [Key]
         public int EmprestimoID { get; set; }
+        [Required]
+        [Display(Name = "Data de Inicio")]
+        [DataType(DataType.Date)]
         public System.DateTime data_inicio { get; set; }
+        [Required]
+        [Display(Name = "Fim de Emprestimo")]
+        [DataType(DataType.Date)]
         public System.DateTime data_fim { get; set; }
         public Boolean validado { get; set; }
         public Boolean devolvido { get; set; }

@@ -1,0 +1,50 @@
+﻿@model eMuseu.Models.Emprestimo
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Emprestimo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.data_inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_fim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_fim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.validado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.validado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.devolvido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.devolvido)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.EmprestimoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

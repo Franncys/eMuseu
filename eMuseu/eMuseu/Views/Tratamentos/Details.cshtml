@@ -1,0 +1,26 @@
+﻿@model eMuseu.Models.Tratamentos
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tratamentos</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.NomeTratamento)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.NomeTratamento)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.TratamentoID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
