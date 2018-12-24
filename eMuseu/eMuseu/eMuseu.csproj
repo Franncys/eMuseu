@@ -296,6 +296,8 @@
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Account\ListaPorAprovar.cshtml" />
     <Content Include="Views\Account\ListaUsers.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Home\Horario.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

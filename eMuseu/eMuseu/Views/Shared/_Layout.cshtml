@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Microsoft.AspNet.Identity
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -28,38 +29,48 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Listar Espólio", "Index", "Concursoes")</li>
-                        </ul>
+                            @if (Request.IsAuthenticated && (User.IsInRole("administrador") || User.IsInRole("especialista")))
+                            {
+                                <li>@Html.ActionLink("Gerir Espólio", "Index", "Concursoes")</li>
+                            }
+                            </ul>
                     </li>
+                    @if (Request.IsAuthenticated && User.IsInRole("registado"))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                Empréstimos
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Pedir Empréstimo", "Create", "Concursoes")</li>
+                                <li>@Html.ActionLink("Historial de Empréstimos", "Create", "Concursoes")</li>
+                            </ul>
+                        </li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("administrador"))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                Registos
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Utilizadores ativos", "ListaUsers", "Account")</li>
+                                <li>@Html.ActionLink("Aprovação de Perfis", "ListaPorAprovar", "Account")</li>
+                                <li>@Html.ActionLink("Aprovação de Empréstimos", "Create", "Concursoes")</li>
+                            </ul>
+                        </li>
+                    }
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
-                            Empréstimos
+                            Informações
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Pedir Empréstimo", "Create", "Concursoes")</li>
-                            <li>@Html.ActionLink("Historial de Empréstimos", "Create", "Concursoes")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            Registos
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Utilizadores ativos", "ListaUsers", "Account")</li>
-                            <li>@Html.ActionLink("Aprovação de Perfis", "ListaPorAprovar", "Account")</li>
-                            <li>@Html.ActionLink("Aprovação de Empréstimos", "Create", "Concursoes")</li>
-                        </ul>
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            Acerca do Museu
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Localização", "ListaPorAprovar", "Concursoes")</li>
-                            <li>@Html.ActionLink("Contactos", "Create", "Concursoes")</li>
-                            <li>@Html.ActionLink("Horário", "Index", "Peixes")</li>
+                            <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
+                            <li>@Html.ActionLink("Horário", "Horario", "Home")</li>
+                            <li>@Html.ActionLink("Sobre Nós", "About", "Home")</li>
                         </ul>
                     </li>
                 </ul>

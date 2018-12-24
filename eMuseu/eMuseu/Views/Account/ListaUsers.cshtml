@@ -37,6 +37,8 @@
     </tr>
 
 @foreach (var item in Model) {
+    if (item.aprovado)
+    {
     <tr>
         <td>
             @Html.DisplayFor(modelItem => item.NomeP)
@@ -63,10 +65,11 @@
             @Html.DisplayFor(modelItem => item.UserName)
         </td>
         <td>
-            @Html.ActionLink("Editar", "Edit", new { id=item.Id }) 
-            @Html.ActionLink("Eliminar", "Delete", new { id=item.Id })
+            @Html.ActionLink("Editar", "Edit", new { id = item.Id }) 
+            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
         </td>
     </tr>
+    }
 }
 
 </table>
