@@ -1,0 +1,51 @@
+﻿@model IEnumerable<eMuseu.Models.Peca>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.nomePeca)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Periodo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zona)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PecaTipo)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.nomePeca)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Periodo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Zona)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PecaTipo)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PecaID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PecaID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PecaID })
+        </td>
+    </tr>
+}
+
+</table>

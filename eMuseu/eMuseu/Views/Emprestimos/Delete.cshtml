@@ -1,0 +1,56 @@
+﻿@model eMuseu.Models.Emprestimo
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Emprestimo</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.data_inicio)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_inicio)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.data_fim)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.data_fim)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.validado)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.validado)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.devolvido)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.devolvido)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

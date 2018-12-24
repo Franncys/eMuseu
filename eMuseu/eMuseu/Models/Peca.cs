@@ -12,6 +12,7 @@ namespace eMuseu.Models
     {
         [Key]
         public int PecaID { get; set; }
+        public String nomePeca { get; set; }
         public int Periodo { get; set; }
         public String Zona { get; set; }
         public TipoPeca PecaTipo { get; set; }

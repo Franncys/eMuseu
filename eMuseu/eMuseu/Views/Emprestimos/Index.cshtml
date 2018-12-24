@@ -1,0 +1,51 @@
+﻿@model IEnumerable<eMuseu.Models.Emprestimo>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.data_inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data_fim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.validado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.devolvido)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_inicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_fim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.validado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.devolvido)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.EmprestimoID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.EmprestimoID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.EmprestimoID })
+        </td>
+    </tr>
+}
+
+</table>
