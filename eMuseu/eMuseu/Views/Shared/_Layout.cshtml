@@ -33,7 +33,7 @@
                             {
                                 <li>@Html.ActionLink("Gerir Espólio", "Index", "Concursoes")</li>
                             }
-                            </ul>
+                        </ul>
                     </li>
                     @if (Request.IsAuthenticated && User.IsInRole("registado"))
                     {
@@ -59,6 +59,20 @@
                                 <li>@Html.ActionLink("Utilizadores ativos", "ListaUsers", "Account")</li>
                                 <li>@Html.ActionLink("Aprovação de Perfis", "ListaPorAprovar", "Account")</li>
                                 <li>@Html.ActionLink("Aprovação de Empréstimos", "Create", "Concursoes")</li>
+                            </ul>
+                        </li>
+                    }
+
+                    @if (Request.IsAuthenticated && (User.IsInRole("registado") || User.IsInRole("especialista")))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown">
+                                Mensagens
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Escrever Mensagem", "Create", "Mensagems")</li>
+                                <li>@Html.ActionLink("Caixa de Mensagens", "Index", "Mensagems")</li>
                             </ul>
                         </li>
                     }
