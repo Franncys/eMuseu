@@ -225,6 +225,18 @@
     <Compile Include="Migrations\201812241821181_Mensagem_modeloV2.Designer.cs">
       <DependentUpon>201812241821181_Mensagem_modeloV2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812251903012_Testes.cs" />
+    <Compile Include="Migrations\201812251903012_Testes.Designer.cs">
+      <DependentUpon>201812251903012_Testes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812251931066_DateTime.cs" />
+    <Compile Include="Migrations\201812251931066_DateTime.Designer.cs">
+      <DependentUpon>201812251931066_DateTime.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812251948393_TesteTesteasd.cs" />
+    <Compile Include="Migrations\201812251948393_TesteTesteasd.Designer.cs">
+      <DependentUpon>201812251948393_TesteTesteasd.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Emprestimo.cs" />
@@ -361,6 +373,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812241821181_Mensagem_modeloV2.resx">
       <DependentUpon>201812241821181_Mensagem_modeloV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812251903012_Testes.resx">
+      <DependentUpon>201812251903012_Testes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812251931066_DateTime.resx">
+      <DependentUpon>201812251931066_DateTime.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812251948393_TesteTesteasd.resx">
+      <DependentUpon>201812251948393_TesteTesteasd.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

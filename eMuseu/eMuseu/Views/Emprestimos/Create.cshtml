@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Create";
     //int Salary = int.Parse(ViewBag.empID);
-    int Salary = 2;
 }
 
 <h2>Novo Empréstimo</h2>
@@ -23,11 +22,10 @@
                 @Html.ValidationMessageFor(model => model.data_fim, "", new { @class = "text-danger" })
             </div>
         </div>
-
         <div class="form-group">
             @Html.Label("Peças", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-3">
-                @Html.DropDownList("Peças", (SelectList)ViewBag.Pecas, "Selecione uma Peça", new { @class = "form-control selectViewPecas" })
+                @Html.DropDownList("PecaID", (SelectList)ViewBag.Pecas, "Selecione uma Peça", new { @class = "form-control selectViewPecas" })
             </div>
             <div class="col-md-7">
                 <input type="button" id="addToTable" value="Adicionar" class="btn btn-info" />
@@ -48,7 +46,7 @@
             <table class="table" id="pecasTable">
                 <thead>
                     <tr>
-                        <th scope="col">@Salary</th>
+                        <th scope="col">Pecas</th>
                     </tr>
                 </thead>
                 <tbody></tbody>
@@ -71,6 +69,20 @@
                 if (value) {
                     $("#pecasTable").append("<tr><td>" + text + "</td></tr>");
                     $(".selectViewPecas :selected").remove();
+
+                    $.ajax({
+                        url: '@Url.Action("Create","Emprestimos")',
+                        type: "POST",
+                        data: '{peca: ' + val + '}',
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (response) {
+                            alert("success");
+                        },
+                        error: function (xhr, status, error) {
+                            alert("error");
+                        }
+                    });
                 }
                 else
                     alert("Selecione Uma Peça");

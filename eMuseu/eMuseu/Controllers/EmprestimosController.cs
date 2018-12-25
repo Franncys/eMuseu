@@ -47,15 +47,18 @@ namespace eMuseu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmprestimoID,data_inicio,data_fim,validado,devolvido")] Emprestimo emprestimo)
+        public ActionResult Create([Bind(Include = "EmprestimoID,data_fim")] Emprestimo emprestimo)
         {
+            int teste = emprestimo.EmprestimoID;
             if (ModelState.IsValid)
             {
+                emprestimo.data_inicio = DateTime.Now;
+               
                 db.Emprestimos.Add(emprestimo);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.pecas = new SelectList(db.Pecas.ToList(), "PecaID", "nomePeca");
             return View(emprestimo);
         }
 
