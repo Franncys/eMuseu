@@ -17,6 +17,9 @@ namespace eMuseu.Models
         [EmailAddress]
         [Display(Name = "Endereço Destinatário")]
         public string EmailDest { get; set; }
+        [EmailAddress]
+        [Display(Name = "Endereço Origem")]
+        public string EmailOri { get; set; }
         [Required]
         [Display(Name = "Mensagem")]
         [DataType(DataType.MultilineText)]

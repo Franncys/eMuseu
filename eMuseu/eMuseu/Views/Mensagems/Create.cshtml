@@ -1,4 +1,6 @@
-﻿@model eMuseu.Models.Mensagem
+﻿
+@model eMuseu.Models.Mensagem
+
 
 @{
     ViewBag.Title = "Create";
@@ -7,7 +9,7 @@
 
 <h2>Mensagem</h2>
 
-@using (Html.BeginForm())
+@using (Html.BeginForm("Create", "Mensagems", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
     @Html.AntiForgeryToken()
 
@@ -32,7 +34,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Enviar" name="Enviar" class="btn btn-default" />
             </div>
         </div>
     </div>

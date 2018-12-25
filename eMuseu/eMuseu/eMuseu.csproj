@@ -343,6 +343,7 @@
     <Content Include="Views\Mensagems\Details.cshtml" />
     <Content Include="Views\Mensagems\Edit.cshtml" />
     <Content Include="Views\Mensagems\Index.cshtml" />
+    <Content Include="Views\Mensagems\IndexEnviadas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -382,6 +383,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812251948393_TesteTesteasd.resx">
       <DependentUpon>201812251948393_TesteTesteasd.cs</DependentUpon>
+
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
