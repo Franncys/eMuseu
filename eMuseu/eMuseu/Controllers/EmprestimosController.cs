@@ -38,7 +38,7 @@ namespace eMuseu.Controllers
         // GET: Emprestimos/Create
         public ActionResult Create()
         {
-            ViewBag.pecas = new SelectList(db.Pecas.ToList(), "nomePeca", "nomePeca");
+            ViewBag.pecas = new SelectList(db.Pecas.ToList(), "PecaID", "nomePeca");
             return View();
         }
 
