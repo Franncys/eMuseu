@@ -6,7 +6,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Caixa de Entrada</h2>
+<h2>Mensagens Enviadas</h2>
 
 <table class="table">
     <tr>
@@ -24,7 +24,7 @@
 
     @foreach (var item in Model)
     {
-        int result = String.Compare(item.DestinoID, User.Identity.GetUserId(), comparisonType: StringComparison.OrdinalIgnoreCase);
+        int result = String.Compare(item.OrigemID, User.Identity.GetUserId(), comparisonType: StringComparison.OrdinalIgnoreCase);
         if (result == 0)
         {
             <tr>

@@ -7,6 +7,8 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using eMuseu.Models;
+using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace eMuseu.Controllers
 {
@@ -16,6 +18,11 @@ namespace eMuseu.Controllers
 
         // GET: Mensagems
         public ActionResult Index()
+        {
+            return View(db.Mensagens.ToList());
+        }
+
+        public ActionResult IndexEnviadas()
         {
             return View(db.Mensagens.ToList());
         }
@@ -50,10 +57,25 @@ namespace eMuseu.Controllers
         {
             if (ModelState.IsValid)
             {
-                
-                db.Mensagens.Add(mensagem);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                UserManager<IdentityUser> userManager = new UserManager<IdentityUser>(new UserStore<IdentityUser>());
+                var users = (from x in db.Users where x.Email == mensagem.EmailDest select x).FirstOrDefault();
+                string userId = string.Empty;
+                if (users != null)
+                {
+                    var currentId = User.Identity.GetUserId();
+                    var currentUser = db.Users.FirstOrDefault(x => x.Id == currentId);
+                    var currentEmail = currentUser.Email;
+                    userId = users.Id;
+                    mensagem.DestinoID = userId;
+                    mensagem.OrigemID = currentId;
+                    mensagem.EmailOri = currentEmail;
+                    db.Mensagens.Add(mensagem);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", "Email inválido ou não existente!");
+                return View(mensagem);
+
             }
 
             return View(mensagem);

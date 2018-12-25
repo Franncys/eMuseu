@@ -225,6 +225,14 @@
     <Compile Include="Migrations\201812241821181_Mensagem_modeloV2.Designer.cs">
       <DependentUpon>201812241821181_Mensagem_modeloV2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812251621467_Mensagem_modeloV3.cs" />
+    <Compile Include="Migrations\201812251621467_Mensagem_modeloV3.Designer.cs">
+      <DependentUpon>201812251621467_Mensagem_modeloV3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812251936259_Mensagem_modeloV4.cs" />
+    <Compile Include="Migrations\201812251936259_Mensagem_modeloV4.Designer.cs">
+      <DependentUpon>201812251936259_Mensagem_modeloV4.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Emprestimo.cs" />
@@ -331,6 +339,7 @@
     <Content Include="Views\Mensagems\Details.cshtml" />
     <Content Include="Views\Mensagems\Edit.cshtml" />
     <Content Include="Views\Mensagems\Index.cshtml" />
+    <Content Include="Views\Mensagems\IndexEnviadas.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -361,6 +370,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812241821181_Mensagem_modeloV2.resx">
       <DependentUpon>201812241821181_Mensagem_modeloV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812251621467_Mensagem_modeloV3.resx">
+      <DependentUpon>201812251621467_Mensagem_modeloV3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812251936259_Mensagem_modeloV4.resx">
+      <DependentUpon>201812251936259_Mensagem_modeloV4.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
