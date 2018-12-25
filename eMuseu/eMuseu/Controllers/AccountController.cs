@@ -13,6 +13,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.Owin;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Net;
 
 namespace eMuseu.Controllers
 {
@@ -114,18 +115,31 @@ namespace eMuseu.Controllers
             return View(context.Users.ToList());
         }
 
-        public async Task<ActionResult> Edit(string id)
+        public ActionResult Edit(string id)
         {
-            var user = await UserManager.FindByNameAsync(id);
-            return View(new EditViewModel(user));
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            ApplicationUser user = context.Users.Find(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+            return View(user);
         }
 
         [HttpPost]
-        public async Task<ActionResult> Edit(EditViewModel Model)
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit([Bind(Include = "NomeP,NomeU,DataNascimento,Cidade,Morada,RoleName,Email,UserName")] ApplicationUser user)
         {
-            var user = new ApplicationUser() { Id = Model.Id, };
-            await UserManager.UpdateAsync(user);
-            return RedirectToAction("ListaUsers");
+            if (ModelState.IsValid)
+            {
+                context.Entry(user).State = EntityState.Modified;
+                context.SaveChanges();
+                return RedirectToAction("ListaUsers");
+            }
+            return View(user);
         }
 
         public async Task<ActionResult> Delete(string id)
@@ -165,9 +179,10 @@ namespace eMuseu.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             var list = context.Users.Where(u => u.UserName.Equals(model.UserName)).Select(u => u.aprovado);
-            if(list.Single())
+            if (list.Single())
+            {
+                var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
                 switch (result)
                 {
                     case SignInStatus.Success:
@@ -181,6 +196,7 @@ namespace eMuseu.Controllers
                         ModelState.AddModelError("", "Invalid login attempt.");
                         return View(model);
                 }
+            }
             ModelState.AddModelError("", "Utilizador não aprovado!");
             return View(model);
         }
@@ -263,7 +279,7 @@ namespace eMuseu.Controllers
                 if (result.Succeeded)
                 {
                     await UserManager.AddToRoleAsync(user.Id,model.RoleName);
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
+                    //await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
 
                     context.SaveChanges();
                     return RedirectToAction("Index", "Home");

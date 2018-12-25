@@ -198,6 +198,7 @@
     <Compile Include="Controllers\EmprestimosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MensagemsController.cs" />
     <Compile Include="Controllers\PecasController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TratamentosController.cs" />
@@ -216,12 +217,21 @@
     <Compile Include="Migrations\201812231349237_pecaNome.Designer.cs">
       <DependentUpon>201812231349237_pecaNome.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812241812486_Mensagem_modelo.cs" />
+    <Compile Include="Migrations\201812241812486_Mensagem_modelo.Designer.cs">
+      <DependentUpon>201812241812486_Mensagem_modelo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812241821181_Mensagem_modeloV2.cs" />
+    <Compile Include="Migrations\201812241821181_Mensagem_modeloV2.Designer.cs">
+      <DependentUpon>201812241821181_Mensagem_modeloV2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Emprestimo.cs" />
     <Compile Include="Models\Emp_Peca.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\Mensagem.cs" />
     <Compile Include="Models\Peca.cs" />
     <Compile Include="Models\Rececao.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
@@ -299,6 +309,8 @@
     <Content Include="Views\Role\Delete.cshtml" />
     <Content Include="Views\Account\ListaPorAprovar.cshtml" />
     <Content Include="Views\Account\ListaUsers.cshtml" />
+    <Content Include="Views\Account\Edit.cshtml" />
+    <Content Include="Views\Home\Horario.cshtml" />
     <Content Include="Views\Pecas\Create.cshtml" />
     <Content Include="Views\Pecas\Delete.cshtml" />
     <Content Include="Views\Pecas\Details.cshtml" />
@@ -314,6 +326,11 @@
     <Content Include="Views\Emprestimos\Details.cshtml" />
     <Content Include="Views\Emprestimos\Edit.cshtml" />
     <Content Include="Views\Emprestimos\Index.cshtml" />
+    <Content Include="Views\Mensagems\Create.cshtml" />
+    <Content Include="Views\Mensagems\Delete.cshtml" />
+    <Content Include="Views\Mensagems\Details.cshtml" />
+    <Content Include="Views\Mensagems\Edit.cshtml" />
+    <Content Include="Views\Mensagems\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -338,6 +355,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812231349237_pecaNome.resx">
       <DependentUpon>201812231349237_pecaNome.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812241812486_Mensagem_modelo.resx">
+      <DependentUpon>201812241812486_Mensagem_modelo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812241821181_Mensagem_modeloV2.resx">
+      <DependentUpon>201812241821181_Mensagem_modeloV2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

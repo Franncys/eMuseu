@@ -54,6 +54,7 @@ namespace eMuseu.Models
         public DbSet<Emprestimo> Emprestimos { get; set; }
         public DbSet<Emp_Peca> Emp_Peca { get; set; }
         public DbSet<Rececao> Rececoes { get; set; }
+        public DbSet<Mensagem> Mensagens { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

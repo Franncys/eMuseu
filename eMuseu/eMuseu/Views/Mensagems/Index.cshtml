@@ -1,0 +1,46 @@
+﻿@model IEnumerable<eMuseu.Models.Mensagem>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrigemID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DestinoID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Msg)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrigemID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DestinoID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Msg)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.MensagemID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.MensagemID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.MensagemID })
+        </td>
+    </tr>
+}
+
+</table>

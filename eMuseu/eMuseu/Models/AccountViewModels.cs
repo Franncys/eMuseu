@@ -5,23 +5,6 @@ using System.Web.Mvc;
 
 namespace eMuseu.Models
 {
-    public class EditViewModel
-    {
-
-            public EditViewModel() { }
-
-            public EditViewModel(ApplicationUser user)
-            {
-                Id = user.Id;
-                //Name = user.Name;
-            }
-
-            public string Id { get; set; }
-
-            public string Name { get; set; }
-        
-    }
-
     public class ExternalLoginConfirmationViewModel
     {
         [Required]
