@@ -21,6 +21,7 @@ namespace eMuseu.Models
         public DateTime? data_fim { get; set; }
         public Boolean validado { get; set; }
         public Boolean devolvido { get; set; }
+        public String userID { get; set; }
         public virtual ICollection<Emp_Peca> Emp_Peca { get; set; }
 
         public Emprestimo()

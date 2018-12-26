@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using eMuseu.Models;
+using Microsoft.AspNet.Identity;
 
 namespace eMuseu.Controllers
 {
@@ -47,15 +48,28 @@ namespace eMuseu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "EmprestimoID,data_fim")] Emprestimo emprestimo)
+        public ActionResult Create([Bind(Include = "EmprestimoID,data_fim")] Emprestimo emprestimo, int []pecasID)
         {
-            int teste = emprestimo.EmprestimoID;
             if (ModelState.IsValid)
             {
                 emprestimo.data_inicio = DateTime.Now;
-               
+                emprestimo.userID = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 db.Emprestimos.Add(emprestimo);
                 db.SaveChanges();
+
+                int lastEmprestimoID = emprestimo.EmprestimoID;
+
+                foreach (int pecaID in pecasID)
+                {
+                    Emp_Peca empPeca = new Emp_Peca();
+                    empPeca.EmprestimoID = lastEmprestimoID;
+                    empPeca.PecaID = pecaID;
+                    var estado = db.Pecas.Where(x => x.PecaID.Equals(pecaID)).Select(x => x.Estado).ToList();
+                    empPeca.Estado = estado.First();
+                    db.Emp_Peca.Add(empPeca);
+                    db.SaveChanges();
+                }
+
                 return RedirectToAction("Index");
             }
             ViewBag.pecas = new SelectList(db.Pecas.ToList(), "PecaID", "nomePeca");

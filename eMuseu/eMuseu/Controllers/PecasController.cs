@@ -46,7 +46,7 @@ namespace eMuseu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "PecaID,nomePeca,Periodo,Zona,PecaTipo")] Peca peca)
+        public ActionResult Create([Bind(Include = "PecaID,nomePeca,Periodo,Zona,Estado,PecaTipo")] Peca peca)
         {
             if (ModelState.IsValid)
             {
@@ -78,7 +78,7 @@ namespace eMuseu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "PecaID,nomePeca,Periodo,Zona,PecaTipo")] Peca peca)
+        public ActionResult Edit([Bind(Include = "PecaID,nomePeca,Periodo,Zona,Estado,PecaTipo")] Peca peca)
         {
             if (ModelState.IsValid)
             {

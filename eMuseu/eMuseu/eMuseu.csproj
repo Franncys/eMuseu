@@ -237,6 +237,22 @@
     <Compile Include="Migrations\201812251948393_TesteTesteasd.Designer.cs">
       <DependentUpon>201812251948393_TesteTesteasd.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812261431432_TesteFCK.cs" />
+    <Compile Include="Migrations\201812261431432_TesteFCK.Designer.cs">
+      <DependentUpon>201812261431432_TesteFCK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812261610540_testtt.cs" />
+    <Compile Include="Migrations\201812261610540_testtt.Designer.cs">
+      <DependentUpon>201812261610540_testtt.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812261641169_TestUserID.cs" />
+    <Compile Include="Migrations\201812261641169_TestUserID.Designer.cs">
+      <DependentUpon>201812261641169_TestUserID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812261644160_TestUserID1.cs" />
+    <Compile Include="Migrations\201812261644160_TestUserID1.Designer.cs">
+      <DependentUpon>201812261644160_TestUserID1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Emprestimo.cs" />
@@ -323,11 +339,6 @@
     <Content Include="Views\Account\ListaUsers.cshtml" />
     <Content Include="Views\Account\Edit.cshtml" />
     <Content Include="Views\Home\Horario.cshtml" />
-    <Content Include="Views\Pecas\Create.cshtml" />
-    <Content Include="Views\Pecas\Delete.cshtml" />
-    <Content Include="Views\Pecas\Details.cshtml" />
-    <Content Include="Views\Pecas\Edit.cshtml" />
-    <Content Include="Views\Pecas\Index.cshtml" />
     <Content Include="Views\Tratamentos\Create.cshtml" />
     <Content Include="Views\Tratamentos\Delete.cshtml" />
     <Content Include="Views\Tratamentos\Details.cshtml" />
@@ -344,6 +355,11 @@
     <Content Include="Views\Mensagems\Edit.cshtml" />
     <Content Include="Views\Mensagems\Index.cshtml" />
     <Content Include="Views\Mensagems\IndexEnviadas.cshtml" />
+    <Content Include="Views\Pecas\Create.cshtml" />
+    <Content Include="Views\Pecas\Delete.cshtml" />
+    <Content Include="Views\Pecas\Details.cshtml" />
+    <Content Include="Views\Pecas\Edit.cshtml" />
+    <Content Include="Views\Pecas\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -383,7 +399,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812251948393_TesteTesteasd.resx">
       <DependentUpon>201812251948393_TesteTesteasd.cs</DependentUpon>
-
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812261431432_TesteFCK.resx">
+      <DependentUpon>201812261431432_TesteFCK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812261610540_testtt.resx">
+      <DependentUpon>201812261610540_testtt.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812261641169_TestUserID.resx">
+      <DependentUpon>201812261641169_TestUserID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812261644160_TestUserID1.resx">
+      <DependentUpon>201812261644160_TestUserID1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
