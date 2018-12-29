@@ -18,7 +18,7 @@ namespace eMuseu.Models
         [Display(Name = "Apelido")]
         public string NomeU { get; set; }
         [Display(Name = "Data de Nascimento")]
-        public DateTime? DataNascimento { get; set; } = DateTime.Today;
+        public DateTime? DataNascimento { get; set; }
         public string Cidade { get; set; }
         public string Morada { get; set; }
         //public TipoUser UserTipo { get; set; }

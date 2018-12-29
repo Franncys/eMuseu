@@ -238,10 +238,6 @@
     <Compile Include="Migrations\201812251948393_TesteTesteasd.Designer.cs">
       <DependentUpon>201812251948393_TesteTesteasd.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812261431432_TesteFCK.cs" />
-    <Compile Include="Migrations\201812261431432_TesteFCK.Designer.cs">
-      <DependentUpon>201812261431432_TesteFCK.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201812261610540_testtt.cs" />
     <Compile Include="Migrations\201812261610540_testtt.Designer.cs">
       <DependentUpon>201812261610540_testtt.cs</DependentUpon>
@@ -410,9 +406,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812251948393_TesteTesteasd.resx">
       <DependentUpon>201812251948393_TesteTesteasd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261431432_TesteFCK.resx">
-      <DependentUpon>201812261431432_TesteFCK.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812261610540_testtt.resx">
       <DependentUpon>201812261610540_testtt.cs</DependentUpon>

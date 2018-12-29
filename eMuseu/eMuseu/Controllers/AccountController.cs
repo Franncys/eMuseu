@@ -126,16 +126,37 @@ namespace eMuseu.Controllers
             {
                 return HttpNotFound();
             }
+
             return View(user);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "NomeP,NomeU,DataNascimento,Cidade,Morada,RoleName,Email,UserName")] ApplicationUser user)
+        public async Task<ActionResult> Edit(ApplicationUser user)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(user).State = EntityState.Modified;
+                var roleStore = new RoleStore<IdentityRole>(context);
+                var roleManager = new RoleManager<IdentityRole>(roleStore);
+                if (!roleManager.RoleExists(user.RoleName))
+                {
+                    ModelState.AddModelError("", "Role não existente!");
+                    return View(user);
+                }
+                var store = new UserStore<ApplicationUser>(new ApplicationDbContext());
+                var manager = new UserManager<ApplicationUser>(store);
+                var currentUser = manager.FindById(user.Id);
+                await manager.RemoveFromRoleAsync(currentUser.Id, currentUser.RoleName);
+                currentUser.NomeP = user.NomeP;
+                currentUser.NomeU = user.NomeU;
+                currentUser.DataNascimento = user.DataNascimento;
+                currentUser.Cidade = user.Cidade;
+                currentUser.Morada = user.Morada;
+                currentUser.Email = user.Email;
+                currentUser.UserName = user.UserName;
+                currentUser.RoleName = user.RoleName;
+                await manager.UpdateAsync(currentUser);
+                await manager.AddToRoleAsync(currentUser.Id, currentUser.RoleName);
                 context.SaveChanges();
                 return RedirectToAction("ListaUsers");
             }
