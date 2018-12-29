@@ -10,6 +10,7 @@ namespace eMuseu.Models
         public int PecaID { get; set; }
         public int EmprestimoID { get; set; }
         public string Estado { get; set; }
+        public System.DateTime? data_Entregue { get; set; }
         public virtual Peca Peca { get; set; }
         public virtual Emprestimo Emprestimo { get; set; }
     }

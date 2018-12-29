@@ -200,6 +200,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MensagemsController.cs" />
     <Compile Include="Controllers\PecasController.cs" />
+    <Compile Include="Controllers\RececoesController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
     <Compile Include="Controllers\TratamentosController.cs" />
     <Compile Include="Global.asax.cs">
@@ -249,8 +250,13 @@
     <Compile Include="Migrations\201812261644160_TestUserID1.Designer.cs">
       <DependentUpon>201812261644160_TestUserID1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812290002582_testeV45.cs" />
+    <Compile Include="Migrations\201812290002582_testeV45.Designer.cs">
+      <DependentUpon>201812290002582_testeV45.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CustomModelRececoes.cs" />
     <Compile Include="Models\Emprestimo.cs" />
     <Compile Include="Models\Emp_Peca.cs" />
     <Compile Include="Models\IdentityModels.cs" />
@@ -366,6 +372,11 @@
     <Content Include="Views\Pecas\Details.cshtml" />
     <Content Include="Views\Pecas\Edit.cshtml" />
     <Content Include="Views\Pecas\Index.cshtml" />
+    <Content Include="Views\Rececoes\Create.cshtml" />
+    <Content Include="Views\Rececoes\Delete.cshtml" />
+    <Content Include="Views\Rececoes\Details.cshtml" />
+    <Content Include="Views\Rececoes\Edit.cshtml" />
+    <Content Include="Views\Rececoes\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -414,6 +425,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812261644160_TestUserID1.resx">
       <DependentUpon>201812261644160_TestUserID1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812290002582_testeV45.resx">
+      <DependentUpon>201812290002582_testeV45.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
