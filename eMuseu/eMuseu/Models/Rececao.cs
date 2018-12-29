@@ -14,7 +14,8 @@ namespace eMuseu.Models
         public int rececaoID { get; set; }
         //[ForeignKey("PecaID")]
         public Peca PecaID { get; set; }
-        //Inserir Campos Para Formulario
+        [Display(Name = "Descrição")]
+        [DataType(DataType.MultilineText)]
         public String formulario { get; set; }
         public String antes { get; set; }
         public String depois { get; set; }

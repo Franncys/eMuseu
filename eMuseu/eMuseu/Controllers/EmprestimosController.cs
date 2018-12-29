@@ -84,6 +84,20 @@ namespace eMuseu.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Emprestimo emprestimo = db.Emprestimos.Find(id);
+
+            string query = "SELECT Pecas.* "
+                + "FROM Pecas "
+                + "INNER JOIN Emp_Peca ON Pecas.PecaID = Emp_Peca.PecaID "
+                + "WHERE Emp_Peca.EmprestimoID = " + id + "";
+            
+            ViewBag.pecasEmp = new SelectList(db.Database.SqlQuery<Peca>(query).ToList(), "PecaID", "nomePeca");
+
+            string queryV2 = "SELECT Pecas.* "
+                + "FROM Pecas "
+                + "WHERE Pecas.PecaID NOT IN (SELECT PecaID FROM Emp_Peca)";
+
+            ViewBag.pecas = new SelectList(db.Database.SqlQuery<Peca>(queryV2).ToList(), "PecaID", "nomePeca");
+
             if (emprestimo == null)
             {
                 return HttpNotFound();
@@ -96,11 +110,34 @@ namespace eMuseu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "EmprestimoID,data_inicio,data_fim,validado,devolvido")] Emprestimo emprestimo)
+        public ActionResult Edit([Bind(Include = "EmprestimoID,data_inicio,data_fim")] Emprestimo emprestimo, int[] pecasID)
         {
             if (ModelState.IsValid)
             {
+                emprestimo.data_inicio = DateTime.Now;
                 db.Entry(emprestimo).State = EntityState.Modified;
+                var emp_Peca = db.Emp_Peca.Where(x => x.EmprestimoID.Equals(emprestimo.EmprestimoID)).ToList();
+                foreach(Emp_Peca peca in emp_Peca)
+                {
+                    db.Emp_Peca.Remove(peca);
+                }
+                //Remover da Base de dados
+               /* while (emp_Peca != null)
+                {
+                    db.Emp_Peca.Remove(emp_Peca);
+                    emp_Peca = db.Emp_Peca.Find(emprestimo.EmprestimoID);
+                }*/
+
+                //Inserir novas Pecas
+                foreach (int pecaID in pecasID)
+                {
+                    Emp_Peca empPeca = new Emp_Peca();
+                    empPeca.EmprestimoID = emprestimo.EmprestimoID;
+                    empPeca.PecaID = pecaID;
+                    var estado = db.Pecas.Where(x => x.PecaID.Equals(pecaID)).Select(x => x.Estado).ToList();
+                    empPeca.Estado = estado.First();
+                    db.Emp_Peca.Add(empPeca);
+                }
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }

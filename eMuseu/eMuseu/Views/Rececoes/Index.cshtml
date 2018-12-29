@@ -1,0 +1,57 @@
+﻿@model IEnumerable<eMuseu.Models.CustomModelRececoes>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Emprestimos</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Emprestimo
+        </th>
+        <th>
+            Utilizador
+        </th>
+        <th>
+            Data Pedido
+        </th>
+        <th>
+            Data Fim
+        </th>
+        <th>
+            Entregue
+        </th>
+        <th>
+            Ações
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in ViewBag.data)
+    {
+    <tr>
+        <td>
+            @item.EmprestimoID
+        </td>
+        <td>
+            @item.NomeP @item.NomeU
+        </td>
+        <td>
+            @item.data_inicio
+        </td>
+        <td>
+            @item.data_fim
+        </td>
+        <td>
+            @item.devolvido
+        </td>
+        <td>
+            @Html.ActionLink("Receive", "Receive", new { id = item.EmprestimoID }) |
+            @Html.ActionLink("Details", "Details", new { id = item.EmprestimoID }) 
+        </td>
+    </tr>
+    }
+
+</table>
