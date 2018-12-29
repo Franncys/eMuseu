@@ -17,8 +17,11 @@ namespace eMuseu.Models
         [Display(Name = "Descrição")]
         [DataType(DataType.MultilineText)]
         public String formulario { get; set; }
+        [Display(Name = "Estado Anterior")]
         public String antes { get; set; }
+        [Display(Name = "Estado Atual")]
         public String depois { get; set; }
+        [Display(Name = "Cumprimento de Data")]
         public int cumprimento { get; set; }
     }
 }

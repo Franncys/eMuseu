@@ -47,6 +47,14 @@ namespace eMuseu.Controllers
             return View(rececao);
         }
 
+        //POST: Rececoes/getPeca
+        public ActionResult GetPeca(int? id)
+        {
+            Peca peca = db.Pecas.Where(x => x.PecaID == id).First();
+
+            return Json(new { EstadoAtual = peca.Estado }, JsonRequestBehavior.AllowGet);
+        }
+
         // GET: Rececoes/Create
         public ActionResult Create(int? id)
         {
@@ -70,6 +78,8 @@ namespace eMuseu.Controllers
             ViewBag.Pecas = new SelectList(newList, "PecaID", "nomePeca");
             return View();
         }
+
+
 
         // POST: Rececoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
