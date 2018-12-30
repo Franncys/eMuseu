@@ -200,25 +200,20 @@ namespace eMuseu.Controllers
 
             // This doesn't count login failures towards account lockout
             // To enable password failures to trigger account lockout, change to shouldLockout: true
-            var list = context.Users.Where(u => u.UserName.Equals(model.UserName)).Select(u => u.aprovado);
-            if (list.Single())
+            var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            switch (result)
             {
-                var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
-                switch (result)
-                {
-                    case SignInStatus.Success:
-                        return RedirectToLocal(returnUrl);
-                    case SignInStatus.LockedOut:
-                        return View("Lockout");
-                    case SignInStatus.RequiresVerification:
-                        return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
-                    case SignInStatus.Failure:
-                    default:
-                        ModelState.AddModelError("", "Invalid login attempt.");
-                        return View(model);
-                }
+                case SignInStatus.Success:
+                    return RedirectToLocal(returnUrl);
+                case SignInStatus.LockedOut:
+                    return View("Lockout");
+                case SignInStatus.RequiresVerification:
+                    return RedirectToAction("SendCode", new { ReturnUrl = returnUrl, RememberMe = model.RememberMe });
+                case SignInStatus.Failure:
+                default:
+                    ModelState.AddModelError("", "Invalid login attempt.");
+                    return View(model);
             }
-            ModelState.AddModelError("", "Utilizador não aprovado!");
             return View(model);
         }
 
@@ -276,11 +271,11 @@ namespace eMuseu.Controllers
             ViewBag.Roles = list;
             return View();*/
 
-            var roles = context.Roles.Select(r => r.Name);
+            var roles = context.Roles.ToList();
 
             var viewModel = new RegisterViewModel
             {
-                RolesList = new SelectList(roles)
+                RolesList = new SelectList(roles, "id", "Name")
             };
             return View(viewModel);
 

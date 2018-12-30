@@ -206,53 +206,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812190024450_teste.cs" />
-    <Compile Include="Migrations\201812190024450_teste.Designer.cs">
-      <DependentUpon>201812190024450_teste.cs</DependentUpon>
+    <Compile Include="Migrations\201812302002038_FinalDB.cs" />
+    <Compile Include="Migrations\201812302002038_FinalDB.Designer.cs">
+      <DependentUpon>201812302002038_FinalDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812191225434_PecaEmprestimo.cs" />
-    <Compile Include="Migrations\201812191225434_PecaEmprestimo.Designer.cs">
-      <DependentUpon>201812191225434_PecaEmprestimo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812231349237_pecaNome.cs" />
-    <Compile Include="Migrations\201812231349237_pecaNome.Designer.cs">
-      <DependentUpon>201812231349237_pecaNome.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812241812486_Mensagem_modelo.cs" />
-    <Compile Include="Migrations\201812241812486_Mensagem_modelo.Designer.cs">
-      <DependentUpon>201812241812486_Mensagem_modelo.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812241821181_Mensagem_modeloV2.cs" />
-    <Compile Include="Migrations\201812241821181_Mensagem_modeloV2.Designer.cs">
-      <DependentUpon>201812241821181_Mensagem_modeloV2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812251903012_Testes.cs" />
-    <Compile Include="Migrations\201812251903012_Testes.Designer.cs">
-      <DependentUpon>201812251903012_Testes.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812251931066_DateTime.cs" />
-    <Compile Include="Migrations\201812251931066_DateTime.Designer.cs">
-      <DependentUpon>201812251931066_DateTime.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812251948393_TesteTesteasd.cs" />
-    <Compile Include="Migrations\201812251948393_TesteTesteasd.Designer.cs">
-      <DependentUpon>201812251948393_TesteTesteasd.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812261610540_testtt.cs" />
-    <Compile Include="Migrations\201812261610540_testtt.Designer.cs">
-      <DependentUpon>201812261610540_testtt.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812261641169_TestUserID.cs" />
-    <Compile Include="Migrations\201812261641169_TestUserID.Designer.cs">
-      <DependentUpon>201812261641169_TestUserID.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812261644160_TestUserID1.cs" />
-    <Compile Include="Migrations\201812261644160_TestUserID1.Designer.cs">
-      <DependentUpon>201812261644160_TestUserID1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812290002582_testeV45.cs" />
-    <Compile Include="Migrations\201812290002582_testeV45.Designer.cs">
-      <DependentUpon>201812290002582_testeV45.cs</DependentUpon>
+    <Compile Include="Migrations\201812302005466_FinalDBV2.cs" />
+    <Compile Include="Migrations\201812302005466_FinalDBV2.Designer.cs">
+      <DependentUpon>201812302005466_FinalDBV2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -270,10 +230,8 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\eMuseuV3.mdf" />
-    <Content Include="App_Data\eMuseuV3_log.ldf">
-      <DependentUpon>eMuseuV3.mdf</DependentUpon>
-    </Content>
+    <Content Include="App_Data\eMuseuV4.mdf" />
+    <Content Include="App_Data\eMuseuV4_log.ldf" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -381,45 +339,15 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812190024450_teste.resx">
-      <DependentUpon>201812190024450_teste.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812302002038_FinalDB.resx">
+      <DependentUpon>201812302002038_FinalDB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812191225434_PecaEmprestimo.resx">
-      <DependentUpon>201812191225434_PecaEmprestimo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812231349237_pecaNome.resx">
-      <DependentUpon>201812231349237_pecaNome.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812241812486_Mensagem_modelo.resx">
-      <DependentUpon>201812241812486_Mensagem_modelo.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812241821181_Mensagem_modeloV2.resx">
-      <DependentUpon>201812241821181_Mensagem_modeloV2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251903012_Testes.resx">
-      <DependentUpon>201812251903012_Testes.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251931066_DateTime.resx">
-      <DependentUpon>201812251931066_DateTime.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812251948393_TesteTesteasd.resx">
-      <DependentUpon>201812251948393_TesteTesteasd.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261610540_testtt.resx">
-      <DependentUpon>201812261610540_testtt.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261641169_TestUserID.resx">
-      <DependentUpon>201812261641169_TestUserID.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812261644160_TestUserID1.resx">
-      <DependentUpon>201812261644160_TestUserID1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812290002582_testeV45.resx">
-      <DependentUpon>201812290002582_testeV45.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201812302005466_FinalDBV2.resx">
+      <DependentUpon>201812302005466_FinalDBV2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

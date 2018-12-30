@@ -3,41 +3,90 @@ namespace eMuseu.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class teste : DbMigration
+    public partial class FinalDB : DbMigration
     {
         public override void Up()
         {
             CreateTable(
-                "dbo.Pecas",
+                "dbo.Emp_Peca",
                 c => new
                     {
-                        PecaID = c.Int(nullable: false, identity: true),
-                        Periodo = c.Int(nullable: false),
-                        Zona = c.String(),
-                        PecaTipo = c.Int(nullable: false),
+                        PecaID = c.Int(nullable: false),
+                        EmprestimoID = c.Int(nullable: false),
+                        Estado = c.String(),
+                        data_Entregue = c.DateTime(),
                     })
-                .PrimaryKey(t => t.PecaID);
+                .PrimaryKey(t => new { t.PecaID, t.EmprestimoID })
+                .ForeignKey("dbo.Emprestimos", t => t.EmprestimoID, cascadeDelete: true)
+                .ForeignKey("dbo.Pecas", t => t.PecaID, cascadeDelete: true)
+                .Index(t => t.PecaID)
+                .Index(t => t.EmprestimoID);
             
             CreateTable(
                 "dbo.Emprestimos",
                 c => new
                     {
                         EmprestimoID = c.Int(nullable: false, identity: true),
-                        data_inicio = c.DateTime(nullable: false),
+                        data_inicio = c.DateTime(),
                         data_fim = c.DateTime(nullable: false),
                         validado = c.Boolean(nullable: false),
                         devolvido = c.Boolean(nullable: false),
+                        userID = c.String(),
                     })
                 .PrimaryKey(t => t.EmprestimoID);
+            
+            CreateTable(
+                "dbo.Pecas",
+                c => new
+                    {
+                        PecaID = c.Int(nullable: false, identity: true),
+                        nomePeca = c.String(),
+                        Periodo = c.Int(nullable: false),
+                        Zona = c.String(),
+                        Estado = c.String(),
+                        PecaTipo = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.PecaID);
             
             CreateTable(
                 "dbo.Tratamentos",
                 c => new
                     {
-                        TratamentoID = c.Int(nullable: false, identity: true),
+                        TratamentoID = c.Int(nullable: false),
                         NomeTratamento = c.String(),
+                        PecaID = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.TratamentoID);
+                .PrimaryKey(t => t.TratamentoID)
+                .ForeignKey("dbo.Pecas", t => t.TratamentoID)
+                .Index(t => t.TratamentoID);
+            
+            CreateTable(
+                "dbo.Mensagem",
+                c => new
+                    {
+                        MensagemID = c.Int(nullable: false, identity: true),
+                        OrigemID = c.String(),
+                        DestinoID = c.String(),
+                        EmailDest = c.String(nullable: false),
+                        EmailOri = c.String(),
+                        Msg = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.MensagemID);
+            
+            CreateTable(
+                "dbo.Rececoes",
+                c => new
+                    {
+                        rececaoID = c.Int(nullable: false, identity: true),
+                        formulario = c.String(),
+                        antes = c.String(),
+                        depois = c.String(),
+                        cumprimento = c.Int(nullable: false),
+                        PecaID_PecaID = c.Int(),
+                    })
+                .PrimaryKey(t => t.rececaoID)
+                .ForeignKey("dbo.Pecas", t => t.PecaID_PecaID)
+                .Index(t => t.PecaID_PecaID);
             
             CreateTable(
                 "dbo.AspNetRoles",
@@ -115,32 +164,6 @@ namespace eMuseu.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId);
             
-            CreateTable(
-                "dbo.EmprestimoPecas",
-                c => new
-                    {
-                        Emprestimo_EmprestimoID = c.Int(nullable: false),
-                        Peca_PecaID = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Emprestimo_EmprestimoID, t.Peca_PecaID })
-                .ForeignKey("dbo.Emprestimos", t => t.Emprestimo_EmprestimoID, cascadeDelete: true)
-                .ForeignKey("dbo.Pecas", t => t.Peca_PecaID, cascadeDelete: true)
-                .Index(t => t.Emprestimo_EmprestimoID)
-                .Index(t => t.Peca_PecaID);
-            
-            CreateTable(
-                "dbo.TratamentosPecas",
-                c => new
-                    {
-                        Tratamentos_TratamentoID = c.Int(nullable: false),
-                        Peca_PecaID = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => new { t.Tratamentos_TratamentoID, t.Peca_PecaID })
-                .ForeignKey("dbo.Tratamentos", t => t.Tratamentos_TratamentoID, cascadeDelete: true)
-                .ForeignKey("dbo.Pecas", t => t.Peca_PecaID, cascadeDelete: true)
-                .Index(t => t.Tratamentos_TratamentoID)
-                .Index(t => t.Peca_PecaID);
-            
         }
         
         public override void Down()
@@ -149,30 +172,31 @@ namespace eMuseu.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
-            DropForeignKey("dbo.TratamentosPecas", "Peca_PecaID", "dbo.Pecas");
-            DropForeignKey("dbo.TratamentosPecas", "Tratamentos_TratamentoID", "dbo.Tratamentos");
-            DropForeignKey("dbo.EmprestimoPecas", "Peca_PecaID", "dbo.Pecas");
-            DropForeignKey("dbo.EmprestimoPecas", "Emprestimo_EmprestimoID", "dbo.Emprestimos");
-            DropIndex("dbo.TratamentosPecas", new[] { "Peca_PecaID" });
-            DropIndex("dbo.TratamentosPecas", new[] { "Tratamentos_TratamentoID" });
-            DropIndex("dbo.EmprestimoPecas", new[] { "Peca_PecaID" });
-            DropIndex("dbo.EmprestimoPecas", new[] { "Emprestimo_EmprestimoID" });
+            DropForeignKey("dbo.Rececoes", "PecaID_PecaID", "dbo.Pecas");
+            DropForeignKey("dbo.Tratamentos", "TratamentoID", "dbo.Pecas");
+            DropForeignKey("dbo.Emp_Peca", "PecaID", "dbo.Pecas");
+            DropForeignKey("dbo.Emp_Peca", "EmprestimoID", "dbo.Emprestimos");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
             DropIndex("dbo.AspNetUserClaims", new[] { "UserId" });
             DropIndex("dbo.AspNetUsers", "UserNameIndex");
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
-            DropTable("dbo.TratamentosPecas");
-            DropTable("dbo.EmprestimoPecas");
+            DropIndex("dbo.Rececoes", new[] { "PecaID_PecaID" });
+            DropIndex("dbo.Tratamentos", new[] { "TratamentoID" });
+            DropIndex("dbo.Emp_Peca", new[] { "EmprestimoID" });
+            DropIndex("dbo.Emp_Peca", new[] { "PecaID" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.Rececoes");
+            DropTable("dbo.Mensagem");
             DropTable("dbo.Tratamentos");
-            DropTable("dbo.Emprestimos");
             DropTable("dbo.Pecas");
+            DropTable("dbo.Emprestimos");
+            DropTable("dbo.Emp_Peca");
         }
     }
 }

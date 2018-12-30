@@ -28,16 +28,24 @@ namespace eMuseu.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             Tratamentos tratamentos = db.Tratamentos.Find(id);
+            int PecaID = tratamentos.PecaID;
+            Peca peca = db.Pecas.Find(PecaID);
+            ViewBag.pecaName = peca.nomePeca;
+
+
             if (tratamentos == null)
             {
                 return HttpNotFound();
             }
+
+            
             return View(tratamentos);
         }
 
         // GET: Tratamentos/Create
         public ActionResult Create()
         {
+            ViewBag.Pecas = new SelectList(db.Pecas.ToList(), "PecaID", "nomePeca");
             return View();
         }
 
@@ -46,15 +54,23 @@ namespace eMuseu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "TratamentoID,NomeTratamento")] Tratamentos tratamentos)
+        public ActionResult Create([Bind(Include = "TratamentoID,NomeTratamento")] Tratamentos tratamentos, int PecaID, String Estado)
         {
             if (ModelState.IsValid)
             {
+                tratamentos.PecaID = PecaID;
                 db.Tratamentos.Add(tratamentos);
+                db.SaveChanges();
+
+                Peca peca = db.Pecas.Single(x => x.PecaID == PecaID);
+                peca.Estado = Estado;
+                db.Entry(peca).State = EntityState.Modified;
+
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Pecas = new SelectList(db.Pecas.ToList(), "PecaID", "nomePeca");
             return View(tratamentos);
         }
 
