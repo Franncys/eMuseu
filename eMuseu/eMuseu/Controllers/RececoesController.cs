@@ -25,7 +25,7 @@ namespace eMuseu.Controllers
                     data_fim = x.data_fim,
                     data_inicio = x.data_inicio,
                     devolvido = x.devolvido
-                }).ToList();
+                }).Where(x => x.devolvido == false).ToList();
             
             ViewBag.data = result;
 
@@ -48,9 +48,10 @@ namespace eMuseu.Controllers
         }
 
         //POST: Rececoes/getPeca
-        public ActionResult GetPeca(int? id)
+        public ActionResult GetPeca(int? id, int? emprestimoID)
         {
-            Peca peca = db.Pecas.Where(x => x.PecaID == id).First();
+            //Alterar para ir buscar o Estado na Tabela Emp_Peca
+            Emp_Peca peca = db.Emp_Peca.Where(x => x.PecaID == id && x.EmprestimoID == emprestimoID).First();
 
             return Json(new { EstadoAtual = peca.Estado }, JsonRequestBehavior.AllowGet);
         }
@@ -64,7 +65,7 @@ namespace eMuseu.Controllers
             }
 
             List<Peca> pecas = db.Pecas.ToList();
-            List<Emp_Peca> pecas_Emp = db.Emp_Peca.Where(x => x.EmprestimoID == id).ToList();
+            List<Emp_Peca> pecas_Emp = db.Emp_Peca.Where(x => x.EmprestimoID == id && x.data_Entregue == null).ToList();
             List<Peca> newList = new List<Peca>();
             foreach(Emp_Peca empPeca in pecas_Emp)
             {
@@ -76,6 +77,7 @@ namespace eMuseu.Controllers
             }
 
             ViewBag.Pecas = new SelectList(newList, "PecaID", "nomePeca");
+            ViewBag.emprestimoID = id;
             return View();
         }
 
@@ -86,10 +88,44 @@ namespace eMuseu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "rececaoID,formulario,antes,depois,cumprimento")] Rececao rececao)
+        public ActionResult Create([Bind(Include = "rececaoID,formulario,antes,depois,cumprimento")] Rececao rececao, int emprestimoID, int PecaID)
         {
+            List<Peca> pecas = db.Pecas.ToList();
+            List<Emp_Peca> pecas_Emp = db.Emp_Peca.Where(x => x.EmprestimoID == emprestimoID).ToList();
+            List<Peca> newList = new List<Peca>();
+            foreach (Emp_Peca empPeca in pecas_Emp)
+            {
+                foreach (Peca peca in pecas)
+                {
+                    if (peca.PecaID.Equals(empPeca.PecaID))
+                        newList.Add(peca);
+                }
+            }
+
+            ViewBag.Pecas = new SelectList(newList, "PecaID", "nomePeca");
+            ViewBag.emprestimoID = emprestimoID;
+
             if (ModelState.IsValid)
             {
+                //Altera DataFinal na Table Emp_Peca
+                Emp_Peca empPeca = db.Emp_Peca.Single(x => x.EmprestimoID == emprestimoID && x.PecaID == PecaID);
+                empPeca.data_Entregue = System.DateTime.Now;
+                db.Entry(empPeca).State = EntityState.Modified;
+                db.SaveChanges();
+
+                //Altera Estado na Tabela da Peca
+                Peca peca = db.Pecas.Single(x => x.PecaID == PecaID);
+                peca.Estado = rececao.depois;
+                db.Entry(peca).State = EntityState.Modified;
+
+                //Verificar se Existe mais pecas neste emprestimo
+                int result = db.Emp_Peca.Where(x => x.EmprestimoID == emprestimoID && x.data_Entregue == null).Count();
+                if (result == 0)
+                {
+                    Emprestimo emp = db.Emprestimos.Single(x => x.EmprestimoID == emprestimoID);
+                    emp.devolvido = true;
+                    db.Entry(emp).State = EntityState.Modified;
+                }
                 db.Rececoes.Add(rececao);
                 db.SaveChanges();
                 return RedirectToAction("Index");

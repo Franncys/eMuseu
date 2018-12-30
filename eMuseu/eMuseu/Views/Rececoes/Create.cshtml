@@ -40,8 +40,10 @@
     <div class="form-group">
         @Html.LabelFor(model => model.cumprimento, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.EditorFor(model => model.cumprimento, new { htmlAttributes = new { @class = "form-control" } })
-            @Html.ValidationMessageFor(model => model.cumprimento, "", new { @class = "text-danger" })
+            <select class="form-control" name="cumprimento">
+                <option value="0">Não</option>
+                <option value="1">Sim</option>
+            </select>
         </div>
     </div>
 
@@ -58,6 +60,10 @@
             <input type="submit" value="Create" class="btn btn-default" />
         </div>
     </div>
+
+    <div class="form-group">
+        <input type='hidden' name='emprestimoID' id="emprestimoID" value="@ViewBag.emprestimoID">
+    </div>
 </div>
 }
 
@@ -72,11 +78,12 @@
             $(".selectViewPecas").change(function () {
                 var value = $(".selectViewPecas :selected").val();
                 var text = $(".selectViewPecas :selected").text();
+                var emprestimoID = $("#emprestimoID").val();
                 if (value) {
                     $.ajax({
                         url: '@Url.Action("GetPeca", "Rececoes")',
                         contentType: "application/json; charset=utf-8",
-                        data: { id: value },
+                        data: { id: value, emprestimoID : emprestimoID},
                         dataType: "json",
                         error: function (xhr) {
                             console.log(xhr.statusText);
