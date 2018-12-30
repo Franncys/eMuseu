@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\EmprestimosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -254,6 +255,10 @@
     <Compile Include="Migrations\201812290002582_testeV45.Designer.cs">
       <DependentUpon>201812290002582_testeV45.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201812291939101_Rececoes_model.cs" />
+    <Compile Include="Migrations\201812291939101_Rececoes_model.Designer.cs">
+      <DependentUpon>201812291939101_Rececoes_model.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\CustomModelRececoes.cs" />
@@ -278,20 +283,10 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Estilos.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Media\Direita.png" />
-    <Content Include="Media\Esquerda.png" />
-    <Content Include="Media\Fundo.png" />
-    <Content Include="Media\img1.jpg" />
-    <Content Include="Media\img2.jpg" />
-    <Content Include="Media\img3.jpg" />
-    <Content Include="Media\img4.jpg" />
-    <Content Include="Media\img5.jpg" />
-    <Content Include="Media\Logo.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -372,6 +367,11 @@
     <Content Include="Views\Pecas\Details.cshtml" />
     <Content Include="Views\Pecas\Edit.cshtml" />
     <Content Include="Views\Pecas\Index.cshtml" />
+    <Content Include="Views\Create.cshtml" />
+    <Content Include="Views\Delete.cshtml" />
+    <Content Include="Views\Details.cshtml" />
+    <Content Include="Views\Edit.cshtml" />
+    <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Rececoes\Create.cshtml" />
     <Content Include="Views\Rececoes\Delete.cshtml" />
     <Content Include="Views\Rececoes\Details.cshtml" />
@@ -428,6 +428,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812290002582_testeV45.resx">
       <DependentUpon>201812290002582_testeV45.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812291939101_Rececoes_model.resx">
+      <DependentUpon>201812291939101_Rececoes_model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
