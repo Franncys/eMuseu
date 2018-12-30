@@ -95,7 +95,7 @@ namespace eMuseu.Controllers
             string queryV2 = "SELECT Pecas.* "
                 + "FROM Pecas "
                 + "WHERE Pecas.PecaID NOT IN (SELECT PecaID FROM Emp_Peca)";
-
+            
             ViewBag.pecas = new SelectList(db.Database.SqlQuery<Peca>(queryV2).ToList(), "PecaID", "nomePeca");
 
             if (emprestimo == null)
