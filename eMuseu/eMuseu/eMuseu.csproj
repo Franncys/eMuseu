@@ -195,6 +195,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ApplicationUsersController.cs" />
     <Compile Include="Controllers\EmprestimosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -213,6 +214,10 @@
     <Compile Include="Migrations\201812302005466_FinalDBV2.cs" />
     <Compile Include="Migrations\201812302005466_FinalDBV2.Designer.cs">
       <DependentUpon>201812302005466_FinalDBV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812291939101_Rececoes_model.cs" />
+    <Compile Include="Migrations\201812291939101_Rececoes_model.Designer.cs">
+      <DependentUpon>201812291939101_Rececoes_model.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -320,6 +325,11 @@
     <Content Include="Views\Pecas\Details.cshtml" />
     <Content Include="Views\Pecas\Edit.cshtml" />
     <Content Include="Views\Pecas\Index.cshtml" />
+    <Content Include="Views\Create.cshtml" />
+    <Content Include="Views\Delete.cshtml" />
+    <Content Include="Views\Details.cshtml" />
+    <Content Include="Views\Edit.cshtml" />
+    <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Rececoes\Create.cshtml" />
     <Content Include="Views\Rececoes\Delete.cshtml" />
     <Content Include="Views\Rececoes\Details.cshtml" />
@@ -345,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812302005466_FinalDBV2.resx">
       <DependentUpon>201812302005466_FinalDBV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812291939101_Rececoes_model.resx">
+      <DependentUpon>201812291939101_Rececoes_model.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />
