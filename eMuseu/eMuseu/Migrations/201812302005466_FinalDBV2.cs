@@ -3,16 +3,16 @@ namespace eMuseu.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class testeV45 : DbMigration
+    public partial class FinalDBV2 : DbMigration
     {
         public override void Up()
         {
-            AddColumn("dbo.Emp_Peca", "data_Entregue", c => c.DateTime());
+            DropColumn("dbo.Tratamentos", "MyProperty");
         }
         
         public override void Down()
         {
-            DropColumn("dbo.Emp_Peca", "data_Entregue");
+            AddColumn("dbo.Tratamentos", "MyProperty", c => c.Int(nullable: false));
         }
     }
 }
