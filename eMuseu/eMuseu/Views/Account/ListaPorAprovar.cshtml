@@ -9,7 +9,7 @@
 
 @using (Html.BeginForm("ListaPorAprovar", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <table class="table">
+    <table class="table table-bordered table-striped table-hover">
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.NomeP)
@@ -39,41 +39,41 @@
         {
             if (!item.aprovado)
             {
-        <tr>
+                <tr class="danger">
 
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeP)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NomeU)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Cidade)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Morada)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.RoleName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Email)
-            </td>
-            @{
-                @:<td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeU)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Morada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    @{
+                        @:<td>
 
-                    <div class="form-group">
-                        <div class="col-md-offset-2 col-md-10">
-                            <input type="checkbox" class="btn btn-default" value="@item.Id" name="Aprovado"><br>
-                        </div>
-                    </div>
+                            <div class="form-group">
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="checkbox" class="btn btn-default" value="@item.Id" name="Aprovado"><br>
+                                </div>
+                            </div>
                     
-                @:</td>
-            }
-                <td>
-                    @Html.ActionLink("Delete", "Delete1", new { id = item.Id })
-                </td>
-            </tr>
+                        @:</td>
+                    }
+                        <td>
+                            @Html.ActionLink("Delete", "Delete1", new { id = item.Id })
+                        </td>
+                </tr>
             }
         }
     </table>

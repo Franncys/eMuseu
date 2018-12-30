@@ -7,7 +7,7 @@
 
 <h2>Utilizadores Ativos</h2>
 
-<table class="table">
+<table class="table table-bordered table-striped table-hover">
     <tr>
         <th>
             @Html.DisplayNameFor(model => model.NomeP)
@@ -36,40 +36,81 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    if (item.aprovado)
+    @foreach (var item in Model)
     {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeP)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NomeU)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DataNascimento)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Cidade)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Morada)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.RoleName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.ActionLink("Editar", "Edit", new { id = item.Id })|
-            @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-        </td>
-    </tr>
-    }
-}
+        if (item.aprovado)
+        {
+            if (item.RoleName == "administrador")
+            {
+                <tr class="success">
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeU)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataNascimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Morada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
 
+            }
+
+            else
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeP)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.NomeU)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.DataNascimento)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Cidade)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Morada)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.RoleName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.UserName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+
+            }
+        }
+    }
 </table>
+
+
