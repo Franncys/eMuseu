@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<div>
+<div class="row">
     <div class="col-md-1">
         <i class="fas fa-palette fa-3x" ></i>
     </div>
@@ -12,54 +12,58 @@
         <h2>Espólio</h2>
     </div>
 </div>
+<hr />
+<div class="row">
+    <div class="col-md-8">
+        <table class="table table-bordered table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.nomePeca)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Periodo)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Zona)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Estado)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PecaTipo)
+                </th>
+            </tr>
 
-<table class="table table-bordered table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.nomePeca)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Periodo)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Zona)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Estado)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PecaTipo)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.nomePeca)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Periodo)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Zona)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Estado)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.PecaTipo)
-            </td>
-            @if (Request.IsAuthenticated && (User.IsInRole("administrador") || User.IsInRole("especialista")))
+            @foreach (var item in Model)
             {
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.PecaID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.PecaID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.PecaID })
-                </td>
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.nomePeca)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Periodo)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Zona)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Estado)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.PecaTipo)
+                    </td>
+                    @if (Request.IsAuthenticated && (User.IsInRole("administrador") || User.IsInRole("especialista")))
+                    {
+                        <td>
+                            @Html.ActionLink("Editar", "Edit", new { id = item.PecaID }) 
+                            @Html.ActionLink("Detalhes", "Details", new { id = item.PecaID }) 
+                            @Html.ActionLink("Eliminar", "Delete", new { id = item.PecaID })
+                        </td>
+                    }
+                </tr>
             }
-        </tr>
-    }
 
-</table>
+        </table>
+    </div>
+</div>
+

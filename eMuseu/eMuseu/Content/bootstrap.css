@@ -63,6 +63,7 @@ a {
     a:active,
     a:hover {
         outline: 0;
+        cursor: pointer;
     }
 
 abbr[title] {
@@ -8442,6 +8443,7 @@ input[type="checkbox"] {
     .dropdown-menu > li > a {
         padding: 12px 15px;
     }
+
 
 .dropdown-header {
     padding-left: 15px;

@@ -5,7 +5,6 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Museu</title>
-    <!--<link href="Url.Content("~/Content/Site.css")" rel="stylesheet" type="text/css"/>-->
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -30,7 +29,10 @@
                         </a>
                         <ul class="dropdown-menu">
                             <li>@Html.ActionLink("Listar Espólio", "Index", "Pecas")</li>
-
+                            @if (Request.IsAuthenticated && (User.IsInRole("especialista") || User.IsInRole("administrador")))
+                            {
+                                <li>@Html.ActionLink("Criar Peça", "Create", "Pecas")</li>
+                            }
                         </ul>
                     </li>
                     @if (Request.IsAuthenticated && User.IsInRole("registado"))
@@ -41,11 +43,12 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Pedir Empréstimo", "Create", "Concursoes")</li>
-                                <li>@Html.ActionLink("Historial de Empréstimos", "Create", "Concursoes")</li>
+                                <li>@Html.ActionLink("Pedir Empréstimo", "Create", "Emprestimos")</li>
+                                <li>@Html.ActionLink("Historial de Empréstimos", "Index", "Emprestimos")</li>
                             </ul>
                         </li>
                     }
+
                     @if (Request.IsAuthenticated && User.IsInRole("administrador"))
                     {
                         <li class="dropdown">
