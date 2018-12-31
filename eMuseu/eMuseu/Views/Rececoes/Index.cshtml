@@ -6,7 +6,7 @@
 
 <h2>Emprestimos</h2>
 
-<table class="tabletable table-bordered table-striped">
+<table class="table table-bordered table-striped">
     <tr>
         <th>
             Emprestimo
@@ -48,7 +48,7 @@
             @item.devolvido
         </td>
         <td>
-            @Html.ActionLink("Receive", "Create", new { id = item.EmprestimoID }) |
+            @Html.ActionLink("Receive", "Receive", new { id = item.EmprestimoID }) |
             @Html.ActionLink("Details", "Details", new { id = item.EmprestimoID }) 
         </td>
     </tr>

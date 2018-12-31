@@ -5,81 +5,90 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Utilizadores por Aprovar</h2>
-
+<div class="row">
+    <div class="col-md-1">
+        <i class="far fa-address-card fa-5x"></i>
+    </div>
+    <div class="col-md-5">
+        <h2>Utilizadores por Aprovar</h2>
+    </div>
+</div>
+<hr />
 @using (Html.BeginForm("ListaPorAprovar", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
 {
-    <table class="table table-bordered table-striped table-hover">
-        <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeP)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NomeU)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Cidade)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Morada)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.RoleName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Email)
-            </th>
-            <th>
-                Aprovar
-            </th>
-            <th></th>
-        </tr>
-
-        @foreach (var item in Model)
-        {
-            if (!item.aprovado)
-            {
-                <tr class="danger">
-
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NomeP)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NomeU)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cidade)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Morada)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RoleName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    @{
-                        @:<td>
-
-                            <div class="form-group">
-                                <div class="col-md-offset-2 col-md-10">
-                                    <input type="checkbox" class="btn btn-default" value="@item.Id" name="Aprovado"><br>
-                                </div>
-                            </div>
-                    
-                        @:</td>
-                    }
-                        <td>
-                            @Html.ActionLink("Delete", "Delete1", new { id = item.Id })
-                        </td>
+    <div class="row">
+        <div class="col-md-12">
+            <table class="table table-bordered table-striped table-hover">
+                <tr>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NomeP)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.NomeU)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Cidade)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Morada)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.RoleName)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Email)
+                    </th>
+                    <th>
+                        Aprovar
+                    </th>
                 </tr>
-            }
-        }
-    </table>
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Aplicar" />
+
+                @foreach (var item in Model)
+                {
+                    if (!item.aprovado)
+                    {
+                        <tr class="danger">
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeU)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cidade)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Morada)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RoleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            @{
+                                @:<td>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="checkbox" class="btn btn-default" value="@item.Id" name="Aprovado"><br>
+                                        </div>
+                                    </div>
+                                @:</td>
+                            }
+                            <td>
+                                @Html.ActionLink("Delete", "Delete1", new { id = item.Id })
+
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" class="btn btn-default btn-warning" value="Aplicar" />
+                </div>
+            </div>
         </div>
     </div>
 }

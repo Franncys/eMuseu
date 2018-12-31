@@ -211,13 +211,13 @@
     <Compile Include="Migrations\201812302002038_FinalDB.Designer.cs">
       <DependentUpon>201812302002038_FinalDB.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812302005466_FinalDBV2.cs" />
-    <Compile Include="Migrations\201812302005466_FinalDBV2.Designer.cs">
-      <DependentUpon>201812302005466_FinalDBV2.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201812291939101_Rececoes_model.cs" />
     <Compile Include="Migrations\201812291939101_Rececoes_model.Designer.cs">
       <DependentUpon>201812291939101_Rececoes_model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201812302005466_FinalDBV2.cs" />
+    <Compile Include="Migrations\201812302005466_FinalDBV2.designer.cs">
+      <DependentUpon>201812302005466_FinalDBV2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -239,11 +239,8 @@
     <Content Include="App_Data\eMuseuV3_log.ldf">
       <DependentUpon>eMuseuV3.mdf</DependentUpon>
     </Content>
-    <Content Include="App_Data\eMuseuV4.mdf" />
-    <Content Include="App_Data\eMuseuV4_log.ldf" />
-    <Content Include="Content\bootstrap-theme.css" />
-    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\fontawesome.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -253,6 +250,9 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="webfonts\fa-brands-400.svg" />
+    <Content Include="webfonts\fa-regular-400.svg" />
+    <Content Include="webfonts\fa-solid-900.svg" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -264,14 +264,6 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
-    <Content Include="Web.config" />
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -328,16 +320,31 @@
     <Content Include="Views\Pecas\Details.cshtml" />
     <Content Include="Views\Pecas\Edit.cshtml" />
     <Content Include="Views\Pecas\Index.cshtml" />
-    <Content Include="Views\Create.cshtml" />
-    <Content Include="Views\Delete.cshtml" />
-    <Content Include="Views\Details.cshtml" />
-    <Content Include="Views\Edit.cshtml" />
-    <Content Include="Views\Index.cshtml" />
     <Content Include="Views\Rececoes\Create.cshtml" />
     <Content Include="Views\Rececoes\Delete.cshtml" />
     <Content Include="Views\Rececoes\Details.cshtml" />
     <Content Include="Views\Rececoes\Edit.cshtml" />
     <Content Include="Views\Rececoes\Index.cshtml" />
+    <Content Include="Web.config" />
+    <Content Include="Views\Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <Content Include="webfonts\fa-brands-400.eot" />
+    <Content Include="webfonts\fa-brands-400.ttf" />
+    <Content Include="webfonts\fa-brands-400.woff" />
+    <Content Include="webfonts\fa-brands-400.woff2" />
+    <Content Include="webfonts\fa-regular-400.eot" />
+    <Content Include="webfonts\fa-regular-400.ttf" />
+    <Content Include="webfonts\fa-regular-400.woff" />
+    <Content Include="webfonts\fa-regular-400.woff2" />
+    <Content Include="webfonts\fa-solid-900.eot" />
+    <Content Include="webfonts\fa-solid-900.ttf" />
+    <Content Include="webfonts\fa-solid-900.woff" />
+    <Content Include="webfonts\fa-solid-900.woff2" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -352,11 +359,11 @@
     <EmbeddedResource Include="Migrations\201812302002038_FinalDB.resx">
       <DependentUpon>201812302002038_FinalDB.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812302005466_FinalDBV2.resx">
-      <DependentUpon>201812302005466_FinalDBV2.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201812291939101_Rececoes_model.resx">
       <DependentUpon>201812291939101_Rececoes_model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201812302005466_FinalDBV2.resx">
+      <DependentUpon>201812302005466_FinalDBV2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup />

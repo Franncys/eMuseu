@@ -1,29 +1,41 @@
-﻿ @model IEnumerable<eMuseu.Models.RoleViewModel>
+﻿@model IEnumerable<eMuseu.Models.RoleViewModel>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<div class="row">
+    <div class="col-md-1">
+        <i class="far fa-address-book fa-4x"></i>
+    </div>
+    <div class="col-md-5">
+        <h2>Roles</h2>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-2">
+        <table class="table table-bordered table-striped table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
 
-<table class="table table-bordered table-striped">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th></th>
-    </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                    </td>
+                </tr>
+            }
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
-
-</table>
+        </table>
+    </div>
+</div>

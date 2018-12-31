@@ -7,12 +7,11 @@ namespace eMuseu.Migrations
     {
         public override void Up()
         {
-            DropColumn("dbo.Tratamentos", "MyProperty");
         }
         
         public override void Down()
         {
-            AddColumn("dbo.Tratamentos", "MyProperty", c => c.Int(nullable: false));
+
         }
     }
 }

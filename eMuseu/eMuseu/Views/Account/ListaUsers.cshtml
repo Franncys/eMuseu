@@ -5,112 +5,124 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Utilizadores Ativos</h2>
+<div class="row">
+    <div class="col-md-1">
+        <i class="far fa-address-card fa-5x"></i>
+    </div>
+    <div class="col-md-4">
+        <h2>Utilizadores Ativos</h2>
+    </div>
+</div>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-bordered table-striped table-hover">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeP)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NomeU)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.DataNascimento)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Cidade)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Morada)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.RoleName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.UserName)
+                </th>
+                <th></th>
+            </tr>
 
-<table class="table table-bordered table-striped table-hover">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.NomeP)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NomeU)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.DataNascimento)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Cidade)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Morada)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.RoleName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
-        if (item.aprovado)
-        {
-            if (item.RoleName == "administrador")
+            @foreach (var item in Model)
             {
-                <tr class="success">
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NomeP)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NomeU)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataNascimento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cidade)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Morada)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RoleName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Editar", "Edit", new { id = item.Id })
-                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-                    </td>
-                </tr>
+                if (item.aprovado)
+                {
+                    if (item.RoleName == "administrador")
+                    {
+                        <tr class="success">
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeU)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataNascimento)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cidade)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Morada)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RoleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
 
+                    }
+
+                    else
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeP)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NomeU)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.DataNascimento)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Cidade)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Morada)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RoleName)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Email)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.UserName)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Editar", "Edit", new { id = item.Id })
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
+                            </td>
+                        </tr>
+
+                    }
+                }
             }
+        </table>
+    </div>
+</div>
 
-            else
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NomeP)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.NomeU)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.DataNascimento)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Cidade)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Morada)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.RoleName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Email)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.UserName)
-                    </td>
-                    <td>
-                        @Html.ActionLink("Editar", "Edit", new { id = item.Id })
-                        @Html.ActionLink("Eliminar", "Delete", new { id = item.Id })
-                    </td>
-                </tr>
-
-            }
-        }
-    }
-</table>
 
 
