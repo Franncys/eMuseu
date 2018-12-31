@@ -80,6 +80,7 @@
                             </ul>
                         </li>
                     }
+
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             Informações
@@ -89,6 +90,22 @@
                             <li>@Html.ActionLink("Contactos", "Contact", "Home")</li>
                             <li>@Html.ActionLink("Horário", "Horario", "Home")</li>
                             <li>@Html.ActionLink("Sobre Nós", "About", "Home")</li>
+                        </ul>
+                    </li>
+                    <li>
+                        @Html.ActionLink("Tratamentos", "Index", "Tratamentos")
+                    </li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown">
+                            Emprestimos
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Emprestimos", "Index", "Emprestimos")</li>
+                            @if (Request.IsAuthenticated && (User.IsInRole("Registado")))
+                            {
+                                <li>@Html.ActionLink("Pedir Emprestimo", "Create", "Emprestimos")</li>
+                            }
                         </ul>
                     </li>
                 </ul>
