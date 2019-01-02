@@ -15,6 +15,7 @@ namespace eMuseu.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Rececoes
+        [Authorize(Roles = "especialista")]
         public ActionResult Index()
         {
             var result = db.Emprestimos.Join(db.Users, x => x.userID, y => y.Id, 
@@ -34,6 +35,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Rececoes/Details/5
+        [Authorize(Roles = "especialista")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -49,6 +51,7 @@ namespace eMuseu.Controllers
         }
 
         //POST: Rececoes/getPeca
+        [Authorize(Roles = "especialista")]
         public ActionResult GetPeca(int? id, int? emprestimoID)
         {
             //Alterar para ir buscar o Estado na Tabela Emp_Peca
@@ -58,6 +61,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Rececoes/Create
+        [Authorize(Roles = "especialista")]
         public ActionResult Create(int? id)
         {
             if (id == null)
@@ -87,6 +91,7 @@ namespace eMuseu.Controllers
         // POST: Rececoes/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "especialista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "rececaoID,formulario,antes,depois,cumprimento")] Rececao rececao, int emprestimoID, int PecaID)
@@ -136,6 +141,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Rececoes/Edit/5
+        [Authorize(Roles = "especialista")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -153,6 +159,7 @@ namespace eMuseu.Controllers
         // POST: Rececoes/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "especialista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "rececaoID,formulario,antes,depois,cumprimento")] Rececao rececao)
@@ -167,6 +174,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Rececoes/Delete/5
+        [Authorize(Roles = "especialista")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -182,6 +190,7 @@ namespace eMuseu.Controllers
         }
 
         // POST: Rececoes/Delete/5
+        [Authorize(Roles = "especialista")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

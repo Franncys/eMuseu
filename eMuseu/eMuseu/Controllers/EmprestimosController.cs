@@ -16,16 +16,17 @@ namespace eMuseu.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Emprestimos
+        [Authorize(Roles = "administrador")]
         public ActionResult Index()
         {
             return View(db.Emprestimos.ToList());
         }
-
+        [Authorize(Roles = "administrador")]
         public ActionResult IndexNotValid()
         {
             return View(db.Emprestimos.Where(x => x.validado == false).ToList());
         }
-
+        [Authorize(Roles = "administrador, registado")]
         public ActionResult IndexPessoal()
         {
             String id = System.Web.HttpContext.Current.User.Identity.GetUserId();
@@ -33,6 +34,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Emprestimos/Details/5
+        [Authorize(Roles = "resgistado, administrador")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -48,6 +50,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Emprestimos/Create
+        [Authorize(Roles = "registado")]
         public ActionResult Create()
         {
             var idEmpPecas = db.Emp_Peca.Where(x => x.data_Entregue == null).ToList();
@@ -70,6 +73,7 @@ namespace eMuseu.Controllers
         // POST: Emprestimos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "registado")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EmprestimoID,data_fim")] Emprestimo emprestimo, int []pecasID)
@@ -122,6 +126,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Emprestimos/Edit/5
+        [Authorize(Roles = "registado")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -153,6 +158,7 @@ namespace eMuseu.Controllers
         // POST: Emprestimos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "registado, administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EmprestimoID,data_inicio,data_fim")] Emprestimo emprestimo, int[] pecasID)
@@ -206,6 +212,7 @@ namespace eMuseu.Controllers
             ModelState.AddModelError("", "Tem de Adicionar Pecas!");
             return View(emprestimo);
         }
+        [Authorize(Roles = "administrador")]
         public ActionResult Validate(int? id)
         {
             if (id == null)
@@ -221,24 +228,8 @@ namespace eMuseu.Controllers
             db.SaveChanges();
             return RedirectToAction("IndexNotValid");
         }
-        // GET: Emprestimos/Delete/5
-        /*public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Emprestimo emprestimo = db.Emprestimos.Find(id);
-            if (emprestimo == null)
-            {
-                return HttpNotFound();
-            }
-            return View(emprestimo);
-        }*/
 
-        // POST: Emprestimos/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
+        [Authorize(Roles = "registado, administrador")]
         public ActionResult Delete(int? id)
         {
             Emprestimo emprestimo = db.Emprestimos.Find(id);

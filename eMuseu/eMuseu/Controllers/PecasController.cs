@@ -36,6 +36,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Pecas/Create
+        [Authorize(Roles = "especialista,administrador")]
         public ActionResult Create()
         {
             return View();
@@ -44,6 +45,7 @@ namespace eMuseu.Controllers
         // POST: Pecas/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "especialista, administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "PecaID,nomePeca,Periodo,Zona,Estado,PecaTipo")] Peca peca)
@@ -59,6 +61,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Pecas/Edit/5
+        [Authorize(Roles = "especialista,administrador")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -76,6 +79,7 @@ namespace eMuseu.Controllers
         // POST: Pecas/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "especialista,administrador")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "PecaID,nomePeca,Periodo,Zona,Estado,PecaTipo")] Peca peca)
@@ -90,6 +94,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Pecas/Delete/5
+        [Authorize(Roles = "especialista,administrador")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -105,6 +110,7 @@ namespace eMuseu.Controllers
         }
 
         // POST: Pecas/Delete/5
+        [Authorize(Roles = "especialista,administrador")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)

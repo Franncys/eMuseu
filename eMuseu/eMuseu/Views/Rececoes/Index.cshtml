@@ -13,6 +13,7 @@
 </div>
 
 <hr />
+
 <table class="table table-bordered table-striped table-hover">
     <tr>
         <th>
@@ -37,27 +38,27 @@
 
     @foreach (var item in ViewBag.data)
     {
-    <tr>
-        <td>
-            @item.EmprestimoID
-        </td>
-        <td>
-            @item.NomeP @item.NomeU
-        </td>
-        <td>
-            @item.data_inicio
-        </td>
-        <td>
-            @item.data_fim
-        </td>
-        <td>
-            @item.devolvido
-        </td>
-        <td>
-            @Html.ActionLink("Recebida", "Receive", new { id = item.EmprestimoID }) 
-            @Html.ActionLink("Detalhes", "Details", new { id = item.EmprestimoID }) 
-        </td>
-    </tr>
+        <tr>
+            <td>
+                @item.EmprestimoID
+            </td>
+            <td>
+                @item.NomeP @item.NomeU
+            </td>
+            <td>
+                @item.data_inicio
+            </td>
+            <td>
+                @item.data_fim
+            </td>
+            <td>
+                @item.devolvido
+            </td>
+            <td>
+                @Html.ActionLink("Recebida", "Receive", new { id = item.EmprestimoID })
+                @Html.ActionLink("Detalhes", "Details", new { id = item.EmprestimoID })
+            </td>
+        </tr>
     }
 
 </table>

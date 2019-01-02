@@ -15,12 +15,14 @@ namespace eMuseu.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Tratamentos
+        [Authorize(Roles = "especialista")]
         public ActionResult Index()
         {
             return View(db.Tratamentos.ToList());
         }
 
         // GET: Tratamentos/Details/5
+        [Authorize(Roles = "especialista")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -43,6 +45,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Tratamentos/Create
+        [Authorize(Roles = "especialista")]
         public ActionResult Create()
         {
             ViewBag.Pecas = new SelectList(db.Pecas.ToList(), "PecaID", "nomePeca");
@@ -52,6 +55,7 @@ namespace eMuseu.Controllers
         // POST: Tratamentos/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "especialista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TratamentoID,NomeTratamento")] Tratamentos tratamentos, int PecaID, String Estado)
@@ -75,6 +79,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Tratamentos/Edit/5
+        [Authorize(Roles = "especialista")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -92,6 +97,7 @@ namespace eMuseu.Controllers
         // POST: Tratamentos/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        [Authorize(Roles = "especialista")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "TratamentoID,NomeTratamento")] Tratamentos tratamentos)
@@ -106,6 +112,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Tratamentos/Delete/5
+        [Authorize(Roles = "especialista")]
         public ActionResult Delete(int? id)
         {
             if (id == null)
@@ -121,6 +128,7 @@ namespace eMuseu.Controllers
         }
 
         // POST: Tratamentos/Delete/5
+        [Authorize(Roles = "especialista")]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
