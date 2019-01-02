@@ -35,6 +35,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Role
+        [Authorize(Roles = "administrador")]
         public ActionResult Index()
         {
             List<RoleViewModel> list = new List<RoleViewModel>();
@@ -43,11 +44,13 @@ namespace eMuseu.Controllers
             return View(list);
         }
 
+        [Authorize(Roles = "administrador")]
         public ActionResult Create()
         {
             return View();
         }
 
+        [Authorize(Roles = "administrador")]
         [HttpPost]
         public async Task<ActionResult> Create(RoleViewModel model)
         {
@@ -62,6 +65,7 @@ namespace eMuseu.Controllers
             return View(new RoleViewModel(role));
         }
 
+        [Authorize(Roles = "administrador")]
         [HttpPost]
         public async Task<ActionResult> Edit(RoleViewModel Model)
         {
@@ -70,6 +74,7 @@ namespace eMuseu.Controllers
             return RedirectToAction("Index");
         }
 
+        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> Details(string id)
         {
             var role = await RoleManager.FindByIdAsync(id);
@@ -82,6 +87,7 @@ namespace eMuseu.Controllers
             return View(new RoleViewModel(role));
         }*/
 
+        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> Delete(string id)
         {
             var role = await RoleManager.FindByIdAsync(id);

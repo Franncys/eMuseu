@@ -17,17 +17,26 @@ namespace eMuseu.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Mensagems
+        [Authorize(Roles = "registado,especialista")]
         public ActionResult Index()
         {
             return View(db.Mensagens.ToList());
         }
 
+        [Authorize(Roles = "registado,especialista")]
         public ActionResult IndexEnviadas()
         {
             return View(db.Mensagens.ToList());
         }
 
+        [Authorize(Roles = "administrador")]
+        public ActionResult IndexTodas()
+        {
+            return View(db.Mensagens.ToList());
+        }
+
         // GET: Mensagems/Details/5
+        [Authorize(Roles = "administrador,registado,especialista")]
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -41,7 +50,7 @@ namespace eMuseu.Controllers
             }
             return View(mensagem);
         }
-
+        [Authorize(Roles = "registado,especialista")]
         // GET: Mensagems/Create
         public ActionResult Create()
         {
@@ -53,6 +62,7 @@ namespace eMuseu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "registado,especialista")]
         public ActionResult Create([Bind(Include = "MensagemID,OrigemID,DestinoID,EmailDest,Msg")] Mensagem mensagem)
         {
             if (ModelState.IsValid)
@@ -71,7 +81,7 @@ namespace eMuseu.Controllers
                     mensagem.EmailOri = currentEmail;
                     db.Mensagens.Add(mensagem);
                     db.SaveChanges();
-                    return RedirectToAction("Index");
+                    return RedirectToAction("IndexEnviadas");
                 }
                 ModelState.AddModelError("", "Email inválido ou não existente!");
                 return View(mensagem);
@@ -82,6 +92,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Mensagems/Edit/5
+        [Authorize(Roles = "administrador,registado,especialista")]
         public ActionResult Edit(int? id)
         {
             if (id == null)
@@ -101,6 +112,7 @@ namespace eMuseu.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador,registado,especialista")]
         public ActionResult Edit([Bind(Include = "MensagemID,OrigemID,DestinoID,Msg")] Mensagem mensagem)
         {
             if (ModelState.IsValid)
@@ -112,25 +124,10 @@ namespace eMuseu.Controllers
             return View(mensagem);
         }
 
-        // GET: Mensagems/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Mensagem mensagem = db.Mensagens.Find(id);
-            if (mensagem == null)
-            {
-                return HttpNotFound();
-            }
-            return View(mensagem);
-        }
 
         // POST: Mensagems/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [Authorize(Roles = "administrador,registado,especialista")]
+        public ActionResult Delete(int? id)
         {
             Mensagem mensagem = db.Mensagens.Find(id);
             db.Mensagens.Remove(mensagem);

@@ -29,9 +29,9 @@ namespace eMuseu.Controllers
 
         public AccountController()
         {
-            
+
             context = new ApplicationDbContext();
-            
+
         }
 
         public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
@@ -47,9 +47,9 @@ namespace eMuseu.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -77,15 +77,15 @@ namespace eMuseu.Controllers
             }
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "administrador")]
         public ActionResult ListaPorAprovar()
         {
-            
+
             return View(context.Users.ToList());
-        }
+        } 
 
         [HttpPost]
-        [AllowAnonymous]
+        [Authorize(Roles = "administrador")]
         public ActionResult ListaPorAprovar(string id, string[] Aprovado = null)
         {
             if (ModelState.IsValid)
@@ -108,13 +108,14 @@ namespace eMuseu.Controllers
             return RedirectToAction("ListaPorAprovar");
         }
 
-        [AllowAnonymous]
+        [Authorize(Roles = "administrador")]
         public ActionResult ListaUsers()
         {
 
             return View(context.Users.ToList());
         }
 
+        [Authorize(Roles = "administrador")]
         public ActionResult Edit(string id)
         {
             if (id == null)
@@ -132,6 +133,7 @@ namespace eMuseu.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> Edit(ApplicationUser user)
         {
             if (ModelState.IsValid)
@@ -163,6 +165,7 @@ namespace eMuseu.Controllers
             return View(user);
         }
 
+        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> Delete(string id)
         {
             var user = await UserManager.FindByIdAsync(id);
@@ -170,6 +173,7 @@ namespace eMuseu.Controllers
             return RedirectToAction("ListaUsers");
         }
 
+        [Authorize(Roles = "administrador")]
         public async Task<ActionResult> Delete1(string id)
         {
             var user = await UserManager.FindByIdAsync(id);

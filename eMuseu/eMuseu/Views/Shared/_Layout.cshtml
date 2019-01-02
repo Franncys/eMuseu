@@ -109,7 +109,7 @@
                         </li>
                     }
 
-                    @if (Request.IsAuthenticated && (User.IsInRole("registado") || User.IsInRole("especialista")))
+                    @if (Request.IsAuthenticated && (User.IsInRole("administrador") || User.IsInRole("registado") || User.IsInRole("especialista")))
                     {
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown">
@@ -117,9 +117,15 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Escrever Mensagem", "Create", "Mensagems")</li>
-                                <li>@Html.ActionLink("Caixa de Entrada", "Index", "Mensagems")</li>
-                                <li>@Html.ActionLink("Mensagens Enviadas", "IndexEnviadas", "Mensagems")</li>
+                                @if (Request.IsAuthenticated && User.IsInRole("administrador")){
+                                    <li>@Html.ActionLink("Todas as Mensagens", "IndexTodas", "Mensagems")</li>
+                                }
+                                @if (Request.IsAuthenticated && (User.IsInRole("registado") || User.IsInRole("especialista")))
+                                {
+                                    <li>@Html.ActionLink("Escrever Mensagem", "Create", "Mensagems")</li>
+                                    <li>@Html.ActionLink("Caixa de Entrada", "Index", "Mensagems")</li>
+                                    <li>@Html.ActionLink("Mensagens Enviadas", "IndexEnviadas", "Mensagems")</li>
+                                }
                             </ul>
                         </li>
                     }
