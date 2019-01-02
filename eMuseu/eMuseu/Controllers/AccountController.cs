@@ -82,10 +82,10 @@ namespace eMuseu.Controllers
         {
 
             return View(context.Users.ToList());
-        } 
+        }
 
-        [HttpPost]
         [Authorize(Roles = "administrador")]
+        [HttpPost]
         public ActionResult ListaPorAprovar(string id, string[] Aprovado = null)
         {
             if (ModelState.IsValid)

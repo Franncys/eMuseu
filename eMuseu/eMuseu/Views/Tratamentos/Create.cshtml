@@ -4,14 +4,13 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
+<h2>Criar Tratamento</h2>
 
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
     
 <div class="form-horizontal">
-    <h4>Tratamentos</h4>
     <hr />
     <div class="form-group">
         @Html.Label("Peças", htmlAttributes: new { @class = "control-label col-md-2" })

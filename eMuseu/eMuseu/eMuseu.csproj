@@ -227,6 +227,10 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\eMuseuv6_1.mdf" />
+    <Content Include="App_Data\eMuseuv6_1_log.ldf">
+      <DependentUpon>eMuseuv6_1.mdf</DependentUpon>
+    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="favicon.ico" />
@@ -234,8 +238,6 @@
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="Imagens\Facebook.png" />
-    <Content Include="Imagens\foot.png" />
-    <Content Include="Imagens\Fundo.png" />
     <Content Include="Imagens\Logo.png" />
     <Content Include="Imagens\Slides\Direita.png" />
     <Content Include="Imagens\Slides\Esquerda.png" />
@@ -358,9 +360,7 @@
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201901021745092_FinalDBV6.resx">
       <DependentUpon>201901021745092_FinalDBV6.cs</DependentUpon>
