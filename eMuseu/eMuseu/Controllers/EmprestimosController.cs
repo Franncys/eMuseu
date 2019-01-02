@@ -78,9 +78,24 @@ namespace eMuseu.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EmprestimoID,data_fim")] Emprestimo emprestimo, int []pecasID)
         {
+            var idEmpPecas = db.Emp_Peca.Where(x => x.data_Entregue == null).ToList();
+            var idPecas = db.Pecas.ToList();
+            var aux = db.Pecas.ToList();
+
+            foreach (Emp_Peca emp_Peca in idEmpPecas)
+            {
+                foreach (Peca peca in idPecas)
+                {
+                    if (peca.PecaID == emp_Peca.PecaID)
+                        aux.Remove(peca);
+                }
+            }
+
+            ViewBag.pecas = new SelectList(aux, "PecaID", "nomePeca");
+
             if (ModelState.IsValid && pecasID != null)
             {
-                if(emprestimo.data_fim > DateTime.Now) {
+                if(emprestimo.data_fim < DateTime.Now) {
                     ModelState.AddModelError("", "Data Incorreta!");
                     return View(emprestimo);
                 }
@@ -105,22 +120,7 @@ namespace eMuseu.Controllers
 
                 return RedirectToAction("IndexPessoal");
             }
-
-            var idEmpPecas = db.Emp_Peca.Where(x => x.data_Entregue == null).ToList();
-            var idPecas = db.Pecas.ToList();
-            var aux = db.Pecas.ToList();
-
-            foreach (Emp_Peca emp_Peca in idEmpPecas)
-            {
-                foreach (Peca peca in idPecas)
-                {
-                    if (peca.PecaID == emp_Peca.PecaID)
-                        aux.Remove(peca);
-                }
-            }
-
-            ViewBag.pecas = new SelectList(aux, "PecaID", "nomePeca");
-
+            
             ModelState.AddModelError("", "Tem de Inserir Produtos");
             return View(emprestimo);
         }
