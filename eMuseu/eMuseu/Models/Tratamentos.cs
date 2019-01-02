@@ -10,6 +10,7 @@ namespace eMuseu.Models
     {
         [Key]
         public int TratamentoID { get; set; }
+        [Display(Name = "Nome do tratamento")]
         public String NomeTratamento { get; set; }
         public int PecaID { get; set; }
         public Tratamentos()

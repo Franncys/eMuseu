@@ -1,0 +1,55 @@
+﻿
+@model IEnumerable<eMuseu.Models.Emprestimo>
+@using Microsoft.AspNet.Identity
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="row">
+    <div class="col-md-1">
+        <i class="fas fa-briefcase fa-4x visible-lg visible-md"></i>
+    </div>
+    <div class="col-md-5">
+        <h2>Historial de Empréstimos</h2>
+    </div>
+</div>
+<hr />
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.data_inicio)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.data_fim)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.validado)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.devolvido)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        int result = String.Compare(item.userID, User.Identity.GetUserId(), comparisonType: StringComparison.OrdinalIgnoreCase);
+        if (result == 0)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data_inicio)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.data_fim)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.validado)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.devolvido)
+                </td>
+            </tr>
+        }
+    }
+
+</table>

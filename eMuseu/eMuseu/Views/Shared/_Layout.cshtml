@@ -4,9 +4,45 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Museu</title>
+    <title>eMuseu</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> <!-- Import redundante do jquery -->
+    <script type="text/javascript">
+        var imageCount = 1;
+        var total = 5;
+
+        function slide(x) {
+            var image = document.getElementById('image');
+            imageCount = imageCount + x;
+            if (imageCount > total) { imageCount = 1; }
+            if (imageCount < 1) { imageCount = total; }
+            image.src = "/Imagens/Slides/img" + imageCount + ".jpg";
+            clearInterval(time); 								// clear interval stops the set interval.
+            time = window.setInterval(function photoA() { 		// givig the value of time the samfunction below starts the loop
+                var image = document.getElementById('image');
+                imageCount = imageCount + 1;
+                if (imageCount > total) { imageCount = 1; }
+                if (imageCount < 1) { imageCount = total; }
+
+                image.src = "/Imagens/Slides/img" + imageCount + ".jpg";
+            }, 5500);
+        }
+
+        var time = window.setInterval(function photoA() {    // just addign the function to the variable so you can target it.
+            var image = document.getElementById('image');
+            imageCount = imageCount + 1;
+            if (imageCount > total) { imageCount = 1; }
+            if (imageCount < 1) { imageCount = total; }
+            image.src = "/Imagens/Slides/img" + imageCount + ".jpg";
+        }, 5500);
+
+        if (!window.jQuery) {
+            document.write('<script src="Scripts/jquery-3.1.1.min.js"><\/script>');
+        }
+    </script>
 
 </head>
 <body>
@@ -18,7 +54,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("eMuseu", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                <a href="/Home/Index"><img src="/Imagens/Logo.png" class="navbar-brand"/></a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -35,16 +71,23 @@
                             }
                         </ul>
                     </li>
-                    @if (Request.IsAuthenticated && User.IsInRole("registado"))
+                    @if (Request.IsAuthenticated && (User.IsInRole("registado") || User.IsInRole("administrador")))
                     {
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown">
-                                Empréstimos
+                                Emprestimos
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Pedir Empréstimo", "Create", "Emprestimos")</li>
-                                <li>@Html.ActionLink("Historial de Empréstimos", "Index", "Emprestimos")</li>
+                                @if (Request.IsAuthenticated && User.IsInRole("administrador"))
+                                {
+                                    <li>@Html.ActionLink("Emprestimos", "Index", "Emprestimos")</li>
+                                }
+                                @if (Request.IsAuthenticated && (User.IsInRole("registado")))
+                                {
+                                    <li>@Html.ActionLink("Emprestimos", "IndexPessoal", "Emprestimos")</li>
+                                    <li>@Html.ActionLink("Pedir Emprestimo", "Create", "Emprestimos")</li>
+                                }
                             </ul>
                         </li>
                     }
@@ -80,7 +123,18 @@
                             </ul>
                         </li>
                     }
-
+                    @if (Request.IsAuthenticated && (User.IsInRole("administrador") || User.IsInRole("especialista")))
+                    {
+                        <li>
+                            @Html.ActionLink("Tratamentos", "Index", "Tratamentos")
+                        </li>
+                    }
+                    @if (Request.IsAuthenticated && User.IsInRole("especialista"))
+                    {
+                        <li>
+                            @Html.ActionLink("Rececoes", "Index", "Rececoes")
+                        </li>
+                    }
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown">
                             Informações
@@ -92,37 +146,20 @@
                             <li>@Html.ActionLink("Sobre Nós", "About", "Home")</li>
                         </ul>
                     </li>
-                    <li>
-                        @Html.ActionLink("Tratamentos", "Index", "Tratamentos")
-                    </li>
-                    <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown">
-                            Emprestimos
-                            <span class="caret"></span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li>@Html.ActionLink("Emprestimos", "Index", "Emprestimos")</li>
-                            @if (Request.IsAuthenticated && (User.IsInRole("Registado")))
-                            {
-                                <li>@Html.ActionLink("Pedir Emprestimo", "Create", "Emprestimos")</li>
-                            }
-                        </ul>
-                    </li>
-                    <li>
-                        @Html.ActionLink("Rececoes", "Index", "Rececoes")
-                    </li>
                 </ul>
-                @Html.Partial("_LoginPartial")
-            </div>
+            @Html.Partial("_LoginPartial")
         </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year eMuseu</p>
-        </footer>
-    </div>
+</div>
+<div class="container body-content">
+    @RenderBody()
+    <hr />
+    <footer>
+        <p>&copy; @DateTime.Now.Year eMuseu</p>
+        <a href="https://www.facebook.com/Funda%C3%A7%C3%A3o-Bissaya-Barreto-152838224772751/"><img src="/Imagens/Facebook.png" id="Face" /></a>
+        <a href="https://twitter.com/triatloaasm"><img src="/Imagens/Twitter.png" id="Twitter" /></a>
+    </footer>
+</div>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

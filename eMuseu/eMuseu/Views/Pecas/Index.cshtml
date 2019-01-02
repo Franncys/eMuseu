@@ -15,49 +15,60 @@
 <hr />
 <div class="row">
     <div class="col-md-8">
-        <table class="table table-bordered table-striped">
+        <table class="table table-bordered table-striped table-hover">
             <tr>
                 <th>
                     @Html.DisplayNameFor(model => model.nomePeca)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Periodo)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Zona)
-                </th>
+                @if (Request.IsAuthenticated && (User.IsInRole("administrador") || User.IsInRole("especialista") || User.IsInRole("registado")))
+                {
+                    <th>
+                        @Html.DisplayNameFor(model => model.Periodo)
+                    </th>
+                    <th>
+                        @Html.DisplayNameFor(model => model.Zona)
+                    </th>
+                }
                 <th>
                     @Html.DisplayNameFor(model => model.Estado)
                 </th>
                 <th>
                     @Html.DisplayNameFor(model => model.PecaTipo)
                 </th>
-            </tr>
+                </tr>
 
             @foreach (var item in Model)
             {
-                <tr>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.nomePeca)
-                    </td>
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.nomePeca)
+                </td>
+                @if (Request.IsAuthenticated && (User.IsInRole("administrador") || User.IsInRole("especialista") || User.IsInRole("registado")))
+                {
                     <td>
                         @Html.DisplayFor(modelItem => item.Periodo)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.Zona)
                     </td>
+                }
                     <td>
                         @Html.DisplayFor(modelItem => item.Estado)
                     </td>
                     <td>
                         @Html.DisplayFor(modelItem => item.PecaTipo)
                     </td>
-                    @if (Request.IsAuthenticated && (User.IsInRole("administrador") || User.IsInRole("especialista")))
+                    @if (Request.IsAuthenticated && (User.IsInRole("administrador") || User.IsInRole("especialista") || User.IsInRole("registado")))
                     {
                         <td>
-                            @Html.ActionLink("Editar", "Edit", new { id = item.PecaID }) 
-                            @Html.ActionLink("Detalhes", "Details", new { id = item.PecaID }) 
-                            @Html.ActionLink("Eliminar", "Delete", new { id = item.PecaID })
+                            @Html.ActionLink("Detalhes ", "Details", new { id = item.PecaID })
+                            @if (Request.IsAuthenticated && (User.IsInRole("administrador") || User.IsInRole("especialista")))
+                            {
+                                @Html.ActionLink("Editar  ", "Edit", new { id = item.PecaID })
+
+                                @Html.ActionLink("Eliminar", "Delete", new { id = item.PecaID })
+
+                            }
                         </td>
                     }
                 </tr>

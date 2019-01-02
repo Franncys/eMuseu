@@ -245,6 +245,18 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Imagens\Facebook.png" />
+    <Content Include="Imagens\foot.png" />
+    <Content Include="Imagens\Fundo.png" />
+    <Content Include="Imagens\Logo.png" />
+    <Content Include="Imagens\Slides\Direita.png" />
+    <Content Include="Imagens\Slides\Esquerda.png" />
+    <Content Include="Imagens\Slides\img1.jpg" />
+    <Content Include="Imagens\Slides\img2.jpg" />
+    <Content Include="Imagens\Slides\img3.jpg" />
+    <Content Include="Imagens\Slides\img4.jpg" />
+    <Content Include="Imagens\Slides\img5.jpg" />
+    <Content Include="Imagens\Twitter.png" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="ApplicationInsights.config">
@@ -327,6 +339,7 @@
     <Content Include="Views\Rececoes\Index.cshtml" />
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
+    <Content Include="Views\Emprestimos\IndexPessoal.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

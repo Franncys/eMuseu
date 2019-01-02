@@ -203,7 +203,7 @@ namespace eMuseu.Controllers
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
             if (result == SignInStatus.Failure)
             {
-                ModelState.AddModelError("", "Utilizador não existente!");
+                ModelState.AddModelError("", "Password incorreta ou utilizador não existente!");
                 return View(model);
             }
             var list = context.Users.Where(u => u.UserName.Equals(model.UserName)).Select(u => u.aprovado);
@@ -224,6 +224,8 @@ namespace eMuseu.Controllers
                 }
             }
             ModelState.AddModelError("", "Utilizador não aprovado, contacte o suporte.");
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.Abandon();
             return View(model);
         }
 
@@ -539,6 +541,7 @@ namespace eMuseu.Controllers
         public ActionResult LogOff()
         {
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            Session.Abandon();
             return RedirectToAction("Index", "Home");
         }
 

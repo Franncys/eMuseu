@@ -21,6 +21,12 @@ namespace eMuseu.Controllers
             return View(db.Emprestimos.ToList());
         }
 
+        public ActionResult IndexPessoal()
+        {
+
+            return View(db.Emprestimos.ToList());
+        }
+
         // GET: Emprestimos/Details/5
         public ActionResult Details(int? id)
         {
@@ -145,7 +151,7 @@ namespace eMuseu.Controllers
         }
 
         // GET: Emprestimos/Delete/5
-        public ActionResult Delete(int? id)
+        /*public ActionResult Delete(int? id)
         {
             if (id == null)
             {
@@ -157,12 +163,12 @@ namespace eMuseu.Controllers
                 return HttpNotFound();
             }
             return View(emprestimo);
-        }
+        }*/
 
         // POST: Emprestimos/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
             Emprestimo emprestimo = db.Emprestimos.Find(id);
             db.Emprestimos.Remove(emprestimo);
