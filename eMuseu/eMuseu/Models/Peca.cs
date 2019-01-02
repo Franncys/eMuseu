@@ -19,16 +19,19 @@ namespace eMuseu.Models
         public String Estado { get; set; }
         [Display(Name = "Tipo de Peça")]
         public TipoPeca PecaTipo { get; set; }
-        [ForeignKey("TratamentoID")]
-        public IList<Tratamentos> TratamentoID { get; set; }
-       /* [ForeignKey("EmprestimoID")]
-        public IList<Emprestimo> EmprestimoID { get; set; }*/
         public virtual ICollection<Emp_Peca> Emp_Peca { get; set; }
 
         public enum TipoPeca
         {
-            tipo1,
-            tipo2
+            Quadro,
+            Rádio,
+            Instrumento,
+            Arma,
+            Louça,
+            Móvel,
+            Veiculo
+            
+            
         }
 
         public Peca()

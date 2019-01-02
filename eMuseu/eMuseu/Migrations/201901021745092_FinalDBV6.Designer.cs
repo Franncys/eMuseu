@@ -7,13 +7,13 @@ namespace eMuseu.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class FinalDBV2 : IMigrationMetadata
+    public sealed partial class FinalDBV6 : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(FinalDBV2));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(FinalDBV6));
         
         string IMigrationMetadata.Id
         {
-            get { return "201812302005466_FinalDBV2"; }
+            get { return "201901021745092_FinalDBV6"; }
         }
         
         string IMigrationMetadata.Source

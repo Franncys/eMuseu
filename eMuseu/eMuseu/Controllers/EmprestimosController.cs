@@ -21,10 +21,15 @@ namespace eMuseu.Controllers
             return View(db.Emprestimos.ToList());
         }
 
+        public ActionResult IndexNotValid()
+        {
+            return View(db.Emprestimos.Where(x => x.validado == false).ToList());
+        }
+
         public ActionResult IndexPessoal()
         {
-
-            return View(db.Emprestimos.ToList());
+            String id = System.Web.HttpContext.Current.User.Identity.GetUserId();
+            return View(db.Emprestimos.Where(x => x.userID == id).ToList());
         }
 
         // GET: Emprestimos/Details/5
@@ -45,7 +50,20 @@ namespace eMuseu.Controllers
         // GET: Emprestimos/Create
         public ActionResult Create()
         {
-            ViewBag.pecas = new SelectList(db.Pecas.ToList(), "PecaID", "nomePeca");
+            var idEmpPecas = db.Emp_Peca.Where(x => x.data_Entregue == null).ToList();
+            var idPecas = db.Pecas.ToList();
+            var aux = db.Pecas.ToList();
+
+            foreach (Emp_Peca emp_Peca in idEmpPecas)
+            {
+                foreach(Peca peca in idPecas)
+                {
+                    if (peca.PecaID == emp_Peca.PecaID)
+                        aux.Remove(peca);
+                }
+            }
+            
+            ViewBag.pecas = new SelectList(aux, "PecaID", "nomePeca");
             return View();
         }
 
@@ -56,8 +74,13 @@ namespace eMuseu.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "EmprestimoID,data_fim")] Emprestimo emprestimo, int []pecasID)
         {
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && pecasID != null)
             {
+                if(emprestimo.data_fim > DateTime.Now) {
+                    ModelState.AddModelError("", "Data Incorreta!");
+                    return View(emprestimo);
+                }
+
                 emprestimo.data_inicio = DateTime.Now;
                 emprestimo.userID = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 db.Emprestimos.Add(emprestimo);
@@ -76,9 +99,25 @@ namespace eMuseu.Controllers
                     db.SaveChanges();
                 }
 
-                return RedirectToAction("Index");
+                return RedirectToAction("IndexPessoal");
             }
-            ViewBag.pecas = new SelectList(db.Pecas.ToList(), "PecaID", "nomePeca");
+
+            var idEmpPecas = db.Emp_Peca.Where(x => x.data_Entregue == null).ToList();
+            var idPecas = db.Pecas.ToList();
+            var aux = db.Pecas.ToList();
+
+            foreach (Emp_Peca emp_Peca in idEmpPecas)
+            {
+                foreach (Peca peca in idPecas)
+                {
+                    if (peca.PecaID == emp_Peca.PecaID)
+                        aux.Remove(peca);
+                }
+            }
+
+            ViewBag.pecas = new SelectList(aux, "PecaID", "nomePeca");
+
+            ModelState.AddModelError("", "Tem de Inserir Produtos");
             return View(emprestimo);
         }
 
@@ -118,22 +157,37 @@ namespace eMuseu.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "EmprestimoID,data_inicio,data_fim")] Emprestimo emprestimo, int[] pecasID)
         {
-            if (ModelState.IsValid)
+            string query = "SELECT Pecas.* "
+                + "FROM Pecas "
+                + "INNER JOIN Emp_Peca ON Pecas.PecaID = Emp_Peca.PecaID "
+                + "WHERE Emp_Peca.EmprestimoID = " + emprestimo.EmprestimoID + "";
+
+            ViewBag.pecasEmp = new SelectList(db.Database.SqlQuery<Peca>(query).ToList(), "PecaID", "nomePeca");
+
+            string queryV2 = "SELECT Pecas.* "
+                + "FROM Pecas "
+                + "WHERE Pecas.PecaID NOT IN (SELECT PecaID FROM Emp_Peca)";
+
+            ViewBag.pecas = new SelectList(db.Database.SqlQuery<Peca>(queryV2).ToList(), "PecaID", "nomePeca");
+            
+            if (ModelState.IsValid && pecasID != null)
             {
+                int i = 0;
+                if (emprestimo.data_fim < emprestimo.data_inicio)
+                {
+                    ModelState.AddModelError("", "Datas Incorretas!");
+                    return View(emprestimo);
+                }
                 emprestimo.data_inicio = DateTime.Now;
+                emprestimo.userID = System.Web.HttpContext.Current.User.Identity.GetUserId();
                 db.Entry(emprestimo).State = EntityState.Modified;
                 var emp_Peca = db.Emp_Peca.Where(x => x.EmprestimoID.Equals(emprestimo.EmprestimoID)).ToList();
                 foreach(Emp_Peca peca in emp_Peca)
                 {
+                    i++;
                     db.Emp_Peca.Remove(peca);
                 }
-                //Remover da Base de dados
-               /* while (emp_Peca != null)
-                {
-                    db.Emp_Peca.Remove(emp_Peca);
-                    emp_Peca = db.Emp_Peca.Find(emprestimo.EmprestimoID);
-                }*/
-
+               
                 //Inserir novas Pecas
                 foreach (int pecaID in pecasID)
                 {
@@ -145,11 +199,28 @@ namespace eMuseu.Controllers
                     db.Emp_Peca.Add(empPeca);
                 }
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                
+                return RedirectToAction("IndexPessoal");
             }
+
+            ModelState.AddModelError("", "Tem de Adicionar Pecas!");
             return View(emprestimo);
         }
-
+        public ActionResult Validate(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Emprestimo emprestimo = db.Emprestimos.Find(id);
+            if (emprestimo == null)
+            {
+                return HttpNotFound();
+            }
+            emprestimo.validado = true;
+            db.SaveChanges();
+            return RedirectToAction("IndexNotValid");
+        }
         // GET: Emprestimos/Delete/5
         /*public ActionResult Delete(int? id)
         {
@@ -166,14 +237,24 @@ namespace eMuseu.Controllers
         }*/
 
         // POST: Emprestimos/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id)
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        public ActionResult Delete(int? id)
         {
             Emprestimo emprestimo = db.Emprestimos.Find(id);
+
+            if (emprestimo == null)
+            {
+                return HttpNotFound();
+            }
+
+            var pecasEmp = db.Emp_Peca.Where(x => x.EmprestimoID == id);
+            foreach (Emp_Peca emp_Peca in pecasEmp)
+                db.Emp_Peca.Remove(emp_Peca);
+
             db.Emprestimos.Remove(emprestimo);
             db.SaveChanges();
-            return RedirectToAction("Index");
+            return RedirectToAction("IndexPessoal");
         }
 
         protected override void Dispose(bool disposing)

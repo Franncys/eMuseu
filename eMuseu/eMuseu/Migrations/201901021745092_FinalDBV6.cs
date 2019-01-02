@@ -3,7 +3,7 @@ namespace eMuseu.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class FinalDB : DbMigration
+    public partial class FinalDBV6 : DbMigration
     {
         public override void Up()
         {
@@ -47,18 +47,6 @@ namespace eMuseu.Migrations
                         PecaTipo = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.PecaID);
-            
-            CreateTable(
-                "dbo.Tratamentos",
-                c => new
-                    {
-                        TratamentoID = c.Int(nullable: false),
-                        NomeTratamento = c.String(),
-                        PecaID = c.Int(nullable: false),
-                    })
-                .PrimaryKey(t => t.TratamentoID)
-                .ForeignKey("dbo.Pecas", t => t.TratamentoID)
-                .Index(t => t.TratamentoID);
             
             CreateTable(
                 "dbo.Mensagem",
@@ -111,6 +99,16 @@ namespace eMuseu.Migrations
                 .ForeignKey("dbo.AspNetUsers", t => t.UserId, cascadeDelete: true)
                 .Index(t => t.UserId)
                 .Index(t => t.RoleId);
+            
+            CreateTable(
+                "dbo.Tratamentos",
+                c => new
+                    {
+                        TratamentoID = c.Int(nullable: false, identity: true),
+                        NomeTratamento = c.String(),
+                        PecaID = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.TratamentoID);
             
             CreateTable(
                 "dbo.AspNetUsers",
@@ -173,7 +171,6 @@ namespace eMuseu.Migrations
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
             DropForeignKey("dbo.Rececoes", "PecaID_PecaID", "dbo.Pecas");
-            DropForeignKey("dbo.Tratamentos", "TratamentoID", "dbo.Pecas");
             DropForeignKey("dbo.Emp_Peca", "PecaID", "dbo.Pecas");
             DropForeignKey("dbo.Emp_Peca", "EmprestimoID", "dbo.Emprestimos");
             DropIndex("dbo.AspNetUserLogins", new[] { "UserId" });
@@ -183,17 +180,16 @@ namespace eMuseu.Migrations
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
             DropIndex("dbo.Rececoes", new[] { "PecaID_PecaID" });
-            DropIndex("dbo.Tratamentos", new[] { "TratamentoID" });
             DropIndex("dbo.Emp_Peca", new[] { "EmprestimoID" });
             DropIndex("dbo.Emp_Peca", new[] { "PecaID" });
             DropTable("dbo.AspNetUserLogins");
             DropTable("dbo.AspNetUserClaims");
             DropTable("dbo.AspNetUsers");
+            DropTable("dbo.Tratamentos");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.Rececoes");
             DropTable("dbo.Mensagem");
-            DropTable("dbo.Tratamentos");
             DropTable("dbo.Pecas");
             DropTable("dbo.Emprestimos");
             DropTable("dbo.Emp_Peca");

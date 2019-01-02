@@ -46,9 +46,8 @@
                 @Html.DisplayFor(modelItem => item.devolvido)
             </td>
             <td>
-                @Html.ActionLink("Editar", "Edit", new { id = item.EmprestimoID })
-                @Html.ActionLink("Detalhes", "Details", new { id = item.EmprestimoID })
-                @Html.ActionLink("Cancelar", "Delete", new { id = item.EmprestimoID })
+                @Html.ActionLink("Validar", "Validate", new { id = item.EmprestimoID })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.EmprestimoID })
             </td>
         </tr>
     }

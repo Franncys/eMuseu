@@ -28,6 +28,7 @@
         <th>
             @Html.DisplayNameFor(model => model.devolvido)
         </th>
+        <th></th>
     </tr>
 
     @foreach (var item in Model)
@@ -35,20 +36,24 @@
         int result = String.Compare(item.userID, User.Identity.GetUserId(), comparisonType: StringComparison.OrdinalIgnoreCase);
         if (result == 0)
         {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.data_inicio)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.data_fim)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.validado)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.devolvido)
-                </td>
-            </tr>
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_inicio)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.data_fim)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.validado)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.devolvido)
+        </td>
+        <td>
+            @Html.ActionLink("Editar", "Edit", new { id = item.EmprestimoID })
+            @Html.ActionLink("Cancelar", "Delete", new { id = item.EmprestimoID })
+        </td>
+    </tr>
         }
     }
 

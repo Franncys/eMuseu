@@ -24,8 +24,9 @@ namespace eMuseu.Controllers
                     NomeU = y.NomeU,
                     data_fim = x.data_fim,
                     data_inicio = x.data_inicio,
-                    devolvido = x.devolvido
-                }).Where(x => x.devolvido == false).ToList();
+                    devolvido = x.devolvido,
+                    validado = x.validado
+                }).Where(x => x.devolvido == false && x.validado == true).ToList();
             
             ViewBag.data = result;
 

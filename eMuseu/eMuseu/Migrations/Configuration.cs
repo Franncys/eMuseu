@@ -9,7 +9,7 @@ namespace eMuseu.Migrations
     {
         public Configuration()
         {
-            AutomaticMigrationsEnabled = true;
+            AutomaticMigrationsEnabled = false;
         }
 
         protected override void Seed(eMuseu.Models.ApplicationDbContext context)

@@ -207,17 +207,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201812302002038_FinalDB.cs" />
-    <Compile Include="Migrations\201812302002038_FinalDB.Designer.cs">
-      <DependentUpon>201812302002038_FinalDB.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812291939101_Rececoes_model.cs" />
-    <Compile Include="Migrations\201812291939101_Rececoes_model.Designer.cs">
-      <DependentUpon>201812291939101_Rececoes_model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201812302005466_FinalDBV2.cs" />
-    <Compile Include="Migrations\201812302005466_FinalDBV2.designer.cs">
-      <DependentUpon>201812302005466_FinalDBV2.cs</DependentUpon>
+    <Compile Include="Migrations\201901021745092_FinalDBV6.cs" />
+    <Compile Include="Migrations\201901021745092_FinalDBV6.Designer.cs">
+      <DependentUpon>201901021745092_FinalDBV6.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -235,10 +227,6 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Data\eMuseuV3.mdf" />
-    <Content Include="App_Data\eMuseuV3_log.ldf">
-      <DependentUpon>eMuseuV3.mdf</DependentUpon>
-    </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\fontawesome.css" />
     <Content Include="favicon.ico" />
@@ -340,6 +328,7 @@
     <Content Include="Web.config" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\Emprestimos\IndexPessoal.cshtml" />
+    <Content Include="Views\Emprestimos\IndexNotValid.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -369,17 +358,13 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201812302002038_FinalDB.resx">
-      <DependentUpon>201812302002038_FinalDB.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812291939101_Rececoes_model.resx">
-      <DependentUpon>201812291939101_Rececoes_model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201812302005466_FinalDBV2.resx">
-      <DependentUpon>201812302005466_FinalDBV2.cs</DependentUpon>
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901021745092_FinalDBV6.resx">
+      <DependentUpon>201901021745092_FinalDBV6.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
-  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

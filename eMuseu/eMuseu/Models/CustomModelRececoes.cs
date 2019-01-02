@@ -13,5 +13,6 @@ namespace eMuseu.Models
         public System.DateTime? data_fim { get; set; }
         public System.DateTime? data_inicio { get; set; }
         public Boolean devolvido { get; set; }
+        public Boolean validado { get; set; }
     }
 }
