@@ -109,7 +109,7 @@
                         </li>
                     }
 
-                    @if (Request.IsAuthenticated && (User.IsInRole("registado") || User.IsInRole("especialista")))
+                    @if (Request.IsAuthenticated && (User.IsInRole("administrador") || User.IsInRole("registado") || User.IsInRole("especialista")))
                     {
                         <li class="dropdown">
                             <a class="dropdown-toggle" data-toggle="dropdown">
@@ -117,9 +117,15 @@
                                 <span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu">
-                                <li>@Html.ActionLink("Escrever Mensagem", "Create", "Mensagems")</li>
-                                <li>@Html.ActionLink("Caixa de Entrada", "Index", "Mensagems")</li>
-                                <li>@Html.ActionLink("Mensagens Enviadas", "IndexEnviadas", "Mensagems")</li>
+                                @if (Request.IsAuthenticated && User.IsInRole("administrador")){
+                                    <li>@Html.ActionLink("Todas as Mensagens", "IndexTodas", "Mensagems")</li>
+                                }
+                                @if (Request.IsAuthenticated && (User.IsInRole("registado") || User.IsInRole("especialista")))
+                                {
+                                    <li>@Html.ActionLink("Escrever Mensagem", "Create", "Mensagems")</li>
+                                    <li>@Html.ActionLink("Caixa de Entrada", "Index", "Mensagems")</li>
+                                    <li>@Html.ActionLink("Mensagens Enviadas", "IndexEnviadas", "Mensagems")</li>
+                                }
                             </ul>
                         </li>
                     }
@@ -155,9 +161,11 @@
     @RenderBody()
     <hr />
     <footer>
-        <p>&copy; @DateTime.Now.Year eMuseu</p>
-        <a href="https://www.facebook.com/Funda%C3%A7%C3%A3o-Bissaya-Barreto-152838224772751/"><img src="/Imagens/Facebook.png" id="Face" /></a>
-        <a href="https://twitter.com/triatloaasm"><img src="/Imagens/Twitter.png" id="Twitter" /></a>
+        <div class="row">
+            <a href="https://www.facebook.com/Funda%C3%A7%C3%A3o-Bissaya-Barreto-152838224772751/"><img src="/Imagens/Facebook.png" id="Face" /></a>
+            <p>&copy; @DateTime.Now.Year eMuseu</p>
+
+        </div>
     </footer>
 </div>
 

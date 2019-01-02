@@ -1,0 +1,51 @@
+﻿@model IEnumerable<eMuseu.Models.Mensagem>
+
+@{
+    ViewBag.Title = "IndexTodas";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-md-1">
+        <i class="far fa-envelope-open fa-5x visible-lg visible-md"></i>
+    </div>
+    <div class="col-md-4">
+        <h2>Mensagens Enviadas</h2>
+    </div>
+</div>
+<hr />
+<table class="table table-bordered table-striped table-hover">
+    <tr>
+        <th>
+            Origem
+        </th>
+        <th>
+            Destino
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Msg)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailOri)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmailDest)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Msg)
+            </td>
+            <td>
+                @Html.ActionLink("Mensagem", "Details", new { id = item.MensagemID })
+                @Html.ActionLink("Eliminar", "Delete", new { id = item.MensagemID })
+            </td>
+        </tr>
+        
+    }
+
+</table>

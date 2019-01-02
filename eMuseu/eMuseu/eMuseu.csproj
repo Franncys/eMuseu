@@ -329,6 +329,7 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\Emprestimos\IndexPessoal.cshtml" />
     <Content Include="Views\Emprestimos\IndexNotValid.cshtml" />
+    <Content Include="Views\Mensagems\IndexTodas.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
